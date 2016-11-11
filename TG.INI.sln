@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TG.INI", "TG.INI\TG.INI.csproj", "{F6CDB07E-52F1-4AD1-A01A-8E186561ED46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{A5DD9A91-4C19-4BBD-AA9D-71C34F1D0D02}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentation", "Documentation\Documentation.shfbproj", "{ECA99E26-24A3-4097-A9E3-1CC4E05A7EFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6CDB07E-52F1-4AD1-A01A-8E186561ED46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CDB07E-52F1-4AD1-A01A-8E186561ED46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CDB07E-52F1-4AD1-A01A-8E186561ED46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CDB07E-52F1-4AD1-A01A-8E186561ED46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5DD9A91-4C19-4BBD-AA9D-71C34F1D0D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5DD9A91-4C19-4BBD-AA9D-71C34F1D0D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5DD9A91-4C19-4BBD-AA9D-71C34F1D0D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5DD9A91-4C19-4BBD-AA9D-71C34F1D0D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA99E26-24A3-4097-A9E3-1CC4E05A7EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA99E26-24A3-4097-A9E3-1CC4E05A7EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA99E26-24A3-4097-A9E3-1CC4E05A7EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA99E26-24A3-4097-A9E3-1CC4E05A7EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tgeiger.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TG.INI.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\TestApp\\TestApp.csproj
+		SccProjectName2 = ../TestApp
+		SccLocalPath2 = ..\\TestApp
+		SccProjectUniqueName3 = ..\\Documentation\\Documentation.shfbproj
+		SccProjectName3 = ../Documentation
+		SccLocalPath3 = ..\\Documentation
+	EndGlobalSection
+EndGlobal
