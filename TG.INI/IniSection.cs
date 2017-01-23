@@ -57,7 +57,7 @@
         /// Gets an <see cref="IniKeyValue"/> with a matching key value.
         /// </summary>
         /// <param name="key">The key to match to a <see cref="IniKeyValue"/>.</param>
-        /// <returns>The matching <see cref="IniKeyValue"/>; otherwise null.</returns>
+        /// <returns>The matching <see cref="IniKeyValue"/>; otherwise a new <see cref="IniKeyValue"/> will be returned.</returns>
         public IniKeyValue this[string key]
         {
             get
@@ -100,7 +100,7 @@
             if (ContainsKey(key))
                 throw new Exception("Key already exists in section.");
             var kv = new IniKeyValue(key, value);
-            List.Add(kv);
+            Add(kv);
             return kv;
         }
 
@@ -114,7 +114,7 @@
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException("value");
             var c = new IniComment(value);
-            List.Add(c);
+            Add(c);
             return c;
         }
 
@@ -128,6 +128,10 @@
             return Find(key) != null;
         }
 
+        public void RemoveEntry(IniEntry entry)
+        {
+            base.InnerList.Remove(entry);
+        }
 
         public IniKeyValue Find(string key)
         {

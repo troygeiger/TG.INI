@@ -9,6 +9,13 @@
     /// </summary>
     public class IniKeyValue : IniEntry
     {
+
+        #region Fields
+
+        string _key = null;
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
@@ -60,7 +67,14 @@
         /// </summary>
         public string Key
         {
-            get; set;
+            get
+            {
+                return _key;
+            }
+            set
+            {
+                _key = value?.Replace(" ", "");
+            }
         }
 
         /// <summary>
@@ -190,16 +204,32 @@
             }
         }
 
+        /// <summary>
+        /// Gets whether the value is encrypted.
+        /// </summary>
+        public bool IsEncrypted
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Value) && Value.Length >= 7 && Value.Substring(0, 7).ToLower() == "crypto:";
+            }
+        }
+
         #endregion Properties
 
         #region Methods
 
+        /// <summary>
+        /// Sets a value as encrypted.
+        /// </summary>
+        /// <param name="encryptionKey">The key string used to encrypt the value.</param>
+        /// <param name="value">The value to encrypt.</param>
         public void SetEncryptedValue(string encryptionKey, string value)
         {
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    this.Value = c.EncryptBase64(value);
+                    this.Value = "crypto:" + c.EncryptBase64(value);
             }
             catch (Exception)
             {
@@ -207,16 +237,58 @@
             }
         }
 
+        /// <summary>
+        /// Sets a value as encrypted.
+        /// </summary>
+        /// <param name="encryptionKey">The key string used to encrypt the value.</param>
+        /// <param name="value">The value to encrypt.</param>
+        public void SetEncryptedValue(byte[] encryptionKey, string value)
+        {
+            try
+            {
+                using (Crypto c = new Crypto(encryptionKey))
+                    this.Value = "crypto:" + c.EncryptBase64(value);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Gets an encrypted value.
+        /// </summary>
+        /// <param name="encryptionKey">The key used to unencrypt the value.</param>
+        /// <returns>The unencrypted value.</returns>
         public string GetEncryptedValue(string encryptionKey)
         {
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    return c.DecryptBase64(Value);
+                    return c.DecryptBase64(IsEncrypted ? Value.Substring(7) : Value);
             }
             catch (Exception)
             {
                 
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets an encrypted value.
+        /// </summary>
+        /// <param name="encryptionKey">The key used to unencrypt the value.</param>
+        /// <returns>The unencrypted value.</returns>
+        public string GetEncryptedValue(byte[] encryptionKey)
+        {
+            try
+            {
+                using (Crypto c = new Crypto(encryptionKey))
+                    return c.DecryptBase64(IsEncrypted ? Value.Substring(7) : Value);
+            }
+            catch (Exception)
+            {
+
             }
             return null;
         }

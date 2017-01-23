@@ -27,12 +27,16 @@
         /// Gets the <see cref="IniSection"/> by name.
         /// </summary>
         /// <param name="name">The name of the <see cref="IniSection"/> to get.</param>
-        /// <returns>The <see cref="IniSection"/>, if found; otherwise null.</returns>
+        /// <returns>The <see cref="IniSection"/>, if found; otherwise a new <see cref="IniSection"/> will be created.</returns>
         public IniSection this[string name]
         {
             get
             {
-                return Find(name);
+                IniSection section = Find(name);
+                if (section == null)
+                    return this.Add(name);
+                else
+                    return section;
             }
         }
 

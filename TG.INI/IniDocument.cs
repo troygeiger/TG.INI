@@ -33,7 +33,7 @@
         /// Initializes a new instance of <see cref="IniDocument"/> then reads from a path.
         /// </summary>
         /// <param name="path">The path to an INI file.</param>
-        public IniDocument(string path): this()
+        public IniDocument(string path) : this()
         {
             Read(path);
         }
@@ -281,7 +281,7 @@
             switch (sp.Length)
             {
                 case 1:
-                    IniKeyValue gval =  GlobalSection.Find(sp[0]);
+                    IniKeyValue gval = GlobalSection.Find(sp[0]);
                     if (gval == null && createIfNotExists)
                     {
                         gval = new IniKeyValue(sp[0], "");
@@ -308,6 +308,55 @@
                     return kv;
                 default:
                     return null;
+            }
+        }
+
+        /// <summary>
+        /// Shows the IniEditor window for the current IniDocument.
+        /// </summary>
+        public void ShowEditor()
+        {
+            ShowEditor("");
+        }
+
+        /// <summary>
+        /// Shows the IniEditor window for the current IniDocument.
+        /// </summary>
+        /// <param name="encryptionKey">The key to use for encryption and decryption.</param>
+        public void ShowEditor(string encryptionKey)
+        {
+            ShowEditor(
+                string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
+                 EditorPrivileges.All
+                );
+        }
+
+        /// <summary>
+        /// Shows the IniEditor window for the current IniDocument.
+        /// </summary>
+        /// <param name="encryptionKey">The key used for encryption and decryption.</param>
+        /// <param name="privileges">The privileges that the editor should have.</param>
+        public void ShowEditor(string encryptionKey, EditorPrivileges privileges)
+        {
+            ShowEditor(
+                string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
+                 privileges
+                );
+        }
+
+        /// <summary>
+        /// Shows the IniEditor window for the current IniDocument.
+        /// </summary>
+        /// <param name="encryptionKey">The key used for encryption and decryption.</param>
+        /// <param name="privileges">The privileges that the editor should have.</param>
+        public void ShowEditor(byte[] encryptionKey, EditorPrivileges privileges)
+        {
+            using (var editor = new Controls.IniEditor())
+            {
+                editor.LoadDocument(this);
+                editor.EncryptionKey = encryptionKey;
+                editor.Privileges = privileges;
+                editor.ShowDialog();
             }
         }
 

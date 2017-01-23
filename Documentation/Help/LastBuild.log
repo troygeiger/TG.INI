@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2015.7.25.0" projectFile="C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Documentation.shfbproj" started="11/10/2016 10:28:38 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2015.7.25.0" projectFile="C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Documentation.shfbproj" started="1/23/2017 11:04:53 AM">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -16,33 +16,38 @@ Lightweight Website Style Version 2015.7.25.0
 Copyright &#169; 2006-2015, Eric Woodruff, All Rights Reserved
 Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
 </buildStep>
+<buildStep step="ClearWorkFolder">
+Clearing working folder...
+</buildStep>
 <buildStep step="ValidatingDocumentationSources">
 Validating and copying documentation source information
 Source: C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\TG.INI\TG.INI.csproj
     Found project &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\TG.INI\TG.INI.csproj&#39;
 
 Parsing project files
-    Found assembly &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\TG.INI\bin\Debug\TG.INI.dll&#39;
+    Found assembly &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\TG.INI\bin\Release\TG.INI.dll&#39;
 
 References to include (excluding framework assemblies):
     None
-
-Copying XML comments files
-    C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\TG.INI\bin\Debug\TG.INI.XML -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TG.INI.XML
+SHFB: Warning BE0062: No XML comments files found.  The help file will not contain any member comments.
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0156
+</plugIn>    Last step completed in 00:00:00.0060
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0000
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - GenerateRefInfo.proj]
-Build started 11/10/2016 10:28:38 PM.
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - GenerateRefInfo.proj]
+Build started 1/23/2017 11:04:54 AM.
+The target &quot;_ConvertPdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,37)&quot; does not exist in the project, and will be ignored.
+The target &quot;_CollectPdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,70)&quot; does not exist in the project, and will be ignored.
+The target &quot;_CollectMdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (41,38)&quot; does not exist in the project, and will be ignored.
+The target &quot;_CopyMdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (41,71)&quot; does not exist in the project, and will be ignored.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateRefInfo.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
@@ -51,7 +56,7 @@ GenerateRefInfo:
   Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
   Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
   Loaded 1 assemblies for reflection and 0 dependency assemblies.
-  Wrote information on 1 namespaces, 9 types, and 85 members
+  Wrote information on 3 namespaces, 14 types, and 122 members
   Copying file from &quot;reflection.org&quot; to &quot;reflection.all&quot;.
   XslTransform (v2015.7.25.0)
   Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
@@ -61,13 +66,13 @@ Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI
 
 Build succeeded.
 
-Time Elapsed 00:00:00.54
-    Last step completed in 00:00:00.7015
+Time Elapsed 00:00:00.75
+    Last step completed in 00:00:00.8909
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - TransformManifest.proj]
-Build started 11/10/2016 10:28:39 PM.
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - TransformManifest.proj]
+Build started 1/23/2017 11:04:54 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
   XslTransform (v2015.7.25.0)
@@ -87,26 +92,26 @@ Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI
 
 Build succeeded.
 
-Time Elapsed 00:00:00.43
-    Last step completed in 00:00:00.5852
+Time Elapsed 00:00:00.85
+    Last step completed in 00:00:00.9706
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0255
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\icons\Help.png -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\icons\Help.png
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0005
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 11/10/2016 10:28:39 PM.
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - GenerateIntermediateTOC.proj]
+Build started 1/23/2017 11:04:55 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
   XslTransform (v2015.7.25.0)
@@ -117,64 +122,249 @@ Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI
 
 Build succeeded.
 
-Time Elapsed 00:00:00.14
+Time Elapsed 00:00:00.13
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.3174
+    Last step completed in 00:00:00.2563
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.0841
+    Last step completed in 00:00:00.0585
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\sandcastle.config
     Replacing default configuration for &#39;Code Block Component&#39; with the custom configuration
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="BuildReferenceTopics">
 Building reference help topics...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - BuildReferenceTopics.proj]
-Build started 11/10/2016 10:28:40 PM.
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - BuildReferenceTopics.proj]
+Build started 1/23/2017 11:04:56 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj&quot; on node 1 (default targets).
 BuildReferenceTopics:
   BuildAssembler (v2015.7.25.0)
   Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
   Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
   Loading configuration...
+BuildAssembler : warning : CopyFromIndexComponent: Entries for the key &#39;N:System.Runtime.CompilerServices&#39; occur in both &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework\System.Runtime.CompilerServices.xml&#39; and &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\reflection.xml&#39;. The last entry will be used. [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : CopyFromIndexComponent: Entries for the key &#39;T:System.Runtime.CompilerServices.ExtensionAttribute&#39; occur in both &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework\System.Runtime.CompilerServices.xml&#39; and &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\reflection.xml&#39;. The last entry will be used. [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : CopyFromIndexComponent: Entries for the key &#39;Methods.T:System.Runtime.CompilerServices.ExtensionAttribute&#39; occur in both &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework\System.Runtime.CompilerServices.xml&#39; and &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\reflection.xml&#39;. The last entry will be used. [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : CopyFromIndexComponent: Entries for the key &#39;Properties.T:System.Runtime.CompilerServices.ExtensionAttribute&#39; occur in both &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework\System.Runtime.CompilerServices.xml&#39; and &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\reflection.xml&#39;. The last entry will be used. [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : CopyFromIndexComponent: Entries for the key &#39;M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor&#39; occur in both &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework\System.Runtime.CompilerServices.xml&#39; and &#39;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\reflection.xml&#39;. The last entry will be used. [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
   Processing topics...
+BuildAssembler : warning : ShowMissingComponent: [N:System.Runtime.CompilerServices] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:System.Runtime.CompilerServices.ExtensionAttribute] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:TG.INI] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.Crypto] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.#ctor(System.Byte[])] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.#ctor(System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Decrypt(System.Byte[])] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Decrypt(System.Byte[])] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Decrypt(System.Byte[])] Missing &lt;param name=&quot;bytes&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64(System.String)] Missing &lt;param name=&quot;base64&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64ToByte(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64ToByte(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptBase64ToByte(System.String)] Missing &lt;param name=&quot;base64&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptToString(System.Byte[])] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptToString(System.Byte[])] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.DecryptToString(System.Byte[])] Missing &lt;param name=&quot;bytes&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.Byte[])] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.Byte[])] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.Byte[])] Missing &lt;param name=&quot;bytes&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.Encrypt(System.String)] Missing &lt;param name=&quot;text&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.Byte[])] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.Byte[])] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.Byte[])] Missing &lt;param name=&quot;bytes&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptBase64(System.String)] Missing &lt;param name=&quot;text&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.EditorPrivileges] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.EntryTypes] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.EnumExtensions] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.EnumExtensions.HasFlag(System.Enum,System.Enum)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.EnumExtensions.HasFlag(System.Enum,System.Enum)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.EnumExtensions.HasFlag(System.Enum,System.Enum)] Missing &lt;param name=&quot;variable&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.EnumExtensions.HasFlag(System.Enum,System.Enum)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniComment] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniComment.#ctor(System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniComment.EntryType] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniComment.ToString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniComment.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniComment.Value] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniDocument] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.#ctor(System.IO.Stream)] Missing &lt;param name=&quot;stream&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.#ctor(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Clone] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Clone] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniDocument.CommentLineIndicator] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String,System.Boolean)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String,System.Boolean)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String,System.Boolean)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.GetKeyValue(System.String,System.Boolean)] Missing &lt;param name=&quot;createIfNotExists&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniDocument.GlobalSection] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniDocument.Item(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Parse(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Parse(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Parse(System.String)] Missing &lt;param name=&quot;iniData&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.IO.Stream)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.IO.Stream)] Missing &lt;param name=&quot;stream&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.IO.TextReader)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.IO.TextReader)] Missing &lt;param name=&quot;reader&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Read(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniDocument.Sections] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.Byte[],TG.INI.EditorPrivileges)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.Byte[],TG.INI.EditorPrivileges)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.Byte[],TG.INI.EditorPrivileges)] Missing &lt;param name=&quot;privileges&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String,TG.INI.EditorPrivileges)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String,TG.INI.EditorPrivileges)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String,TG.INI.EditorPrivileges)] Missing &lt;param name=&quot;privileges&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ToString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.IO.Stream)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.IO.Stream)] Missing &lt;param name=&quot;stream&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.IO.TextWriter)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.IO.TextWriter)] Missing &lt;param name=&quot;writer&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.Write(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniEntry] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniEntry.EntryType] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniEntry.ParentDocument] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniEntry.ToString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniEntry.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniEntry.Value] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniKeyValue] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.#ctor(System.String,System.Int32)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.#ctor(System.String,System.Int32)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.#ctor(System.String,System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.#ctor(System.String,System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.EntryType] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.Byte[])] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.Byte[])] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.Byte[])] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.GetEncryptedValue(System.String)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.IsEncrypted] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.Key] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.QuoteValue] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.Byte[],System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.Byte[],System.String)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.Byte[],System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.String,System.String)] Missing &lt;param name=&quot;encryptionKey&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.SetEncryptedValue(System.String,System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.ToString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueBoolean] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueDateTime] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueDecimal] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueDouble] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueFloat] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueInt] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniKeyValue.ValueInt64] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniSection] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.#ctor(System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Add(TG.INI.IniEntry)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Add(TG.INI.IniEntry)] Missing &lt;param name=&quot;entry&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddComment(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddComment(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddComment(System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddKeyValue(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddKeyValue(System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddKeyValue(System.String,System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.AddKeyValue(System.String,System.String)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ContainsKey(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ContainsKey(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ContainsKey(System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniSection.Item(System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniSection.Item(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniSection.Name] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniSection.ParentDocument] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;param name=&quot;entry&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ToString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniWhiteSpace] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniWhiteSpace.#ctor(System.Int32)] Missing &lt;param name=&quot;spaces&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniWhiteSpace.#ctor(System.String)] Missing &lt;param name=&quot;whiteSpace&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniWhiteSpace.EntryType] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniWhiteSpace.Spaces] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.IniWhiteSpace.Value] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.SectionCollection] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.#ctor(TG.INI.IniDocument)] Missing &lt;param name=&quot;document&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-  Processed 121 topic(s)
-  14 warning(s)
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(TG.INI.IniSection)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(TG.INI.IniSection)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Add(TG.INI.IniSection)] Missing &lt;param name=&quot;section&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Contains(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Contains(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Contains(System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Find(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Find(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Find(System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.SectionCollection.Item(System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.SectionCollection.Item(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.SectionCollection.ParentDocument] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Remove(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Remove(System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Remove(TG.INI.IniSection)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.Remove(TG.INI.IniSection)] Missing &lt;param name=&quot;section&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [N:TG.INI.Controls] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.Controls.IniEditor] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.CanEncrypt] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.Dirty] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:TG.INI.Controls.IniEditor.DirtyChanged] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.DisplayMode] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:TG.INI.Controls.IniEditor.DisplayModeChanged] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.Document] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.DocumentPath] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.EncryptionKey] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.EncryptionKeyString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.LoadDocument(TG.INI.IniDocument)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.LoadDocument(TG.INI.IniDocument)] Missing &lt;param name=&quot;iniDocument&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.OnDirtyChanged] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.OnDisplayModeChanged] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.OpenDocument(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Controls.IniEditor.OpenDocument(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.Privileges] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:TG.INI.Controls.IniEditor.Title] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.Controls.IniEditor.DisplayModes] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+  Processed 165 topic(s)
+  198 warning(s)
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 3 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
+  ResolveReferenceLinksComponent: New MSDN content ID cache size: 659 entries
 Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.23
-    Last step completed in 00:00:03.4009
+Time Elapsed 00:02:01.91
+    Last step completed in 00:02:02.0335
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0015
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - ExtractHtmlInfo.proj]
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - ExtractHtmlInfo.proj]
 Sandcastle Help File Builder and Tools, version 2015.7.25.0
 Copyright c 2006-2015, Eric Woodruff, All Rights Reserved
 E-Mail: Eric@EWoodruff.us
@@ -182,11 +372,11 @@ E-Mail: Eric@EWoodruff.us
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing Help 1 files in C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1
-Processed 121 HTML files
+Processed 165 HTML files
 Sorting keywords and generating See Also indices
 Saving HTML Help 1 keyword index to C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TG.INI.hhk
 Saving HTML Help 1 table of contents to C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TG.INI.hhc
-    Last step completed in 00:00:00.3223
+    Last step completed in 00:00:00.2653
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -252,7 +442,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding-zh-CN.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding-zh-CN.css
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding-zh-TW.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding-zh-TW.css
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding.css
-    Last step completed in 00:00:00.0998
+    Last step completed in 00:00:00.3279
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating HTML Help 1 table of contents file...
@@ -264,11 +454,11 @@ Generating HTML Help 1 index file...
 </buildStep>
 <buildStep step="GenerateHelpProject">
 Generating HTML Help 1 project file...
-    Last step completed in 00:00:00.0157
+    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="CompilingHelpFile">
 Compiling HTML Help 1 file...
-[C:\Program Files (x86)\MSBuild\12.0\bin\amd64\MSBuild.exe - Build1xHelpFile.proj]
+[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - Build1xHelpFile.proj]
   Microsoft HTML Help Compiler 4.74.8702
   
   
@@ -279,13 +469,13 @@ Compiling HTML Help 1 file...
   
   
   
-  Compile time: 0 minutes, 0 seconds
+  Compile time: 0 minutes, 1 second
   
-  123	Topics
+  167	Topics
   
-  1,352	Local links
+  1,683	Local links
   
-  408	Internet links
+  2,438	Internet links
   
   0	Graphics
   
@@ -293,19 +483,19 @@ Compiling HTML Help 1 file...
   
   
   
-  Created c:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\TG.INI.chm, 174,051 bytes
+  Created c:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\TG.INI.chm, 238,207 bytes
   
-  Compression decreased file by 825,898 bytes.
+  Compression decreased file by 1,423,503 bytes.
   
-    Last step completed in 00:00:01.3631
+    Last step completed in 00:00:01.7271
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.0529
+    Last step completed in 00:00:00.0692
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 11/10/2016 10:28:45 PM.  Total time: 00:00:07.4753
+Build completed successfully at 1/23/2017 11:07:00 AM.  Total time: 00:02:07.4455
 
 </buildStep>
 </shfbBuild>
