@@ -314,18 +314,18 @@
         /// <summary>
         /// Shows the IniEditor window for the current IniDocument.
         /// </summary>
-        public void ShowEditor()
+        public System.Windows.Forms.DialogResult ShowEditor()
         {
-            ShowEditor("");
+            return ShowEditor("");
         }
 
         /// <summary>
         /// Shows the IniEditor window for the current IniDocument.
         /// </summary>
         /// <param name="encryptionKey">The key to use for encryption and decryption.</param>
-        public void ShowEditor(string encryptionKey)
+        public System.Windows.Forms.DialogResult ShowEditor(string encryptionKey)
         {
-            ShowEditor(
+            return ShowEditor(
                 string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
                  EditorPrivileges.All
                 );
@@ -336,12 +336,12 @@
         /// </summary>
         /// <param name="encryptionKey">The key used for encryption and decryption.</param>
         /// <param name="privileges">The privileges that the editor should have.</param>
-        public void ShowEditor(string encryptionKey, EditorPrivileges privileges)
+        public System.Windows.Forms.DialogResult ShowEditor(string encryptionKey, EditorPrivileges privileges)
         {
-            ShowEditor(
-                string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
-                 privileges
-                );
+            return ShowEditor(
+                 string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
+                  privileges
+                 );
         }
 
         /// <summary>
@@ -349,15 +349,17 @@
         /// </summary>
         /// <param name="encryptionKey">The key used for encryption and decryption.</param>
         /// <param name="privileges">The privileges that the editor should have.</param>
-        public void ShowEditor(byte[] encryptionKey, EditorPrivileges privileges)
+        public System.Windows.Forms.DialogResult ShowEditor(byte[] encryptionKey, EditorPrivileges privileges)
         {
+            System.Windows.Forms.DialogResult result;
             using (var editor = new Controls.IniEditor())
             {
                 editor.LoadDocument(this);
                 editor.EncryptionKey = encryptionKey;
                 editor.Privileges = privileges;
-                editor.ShowDialog();
+                result = editor.ShowDialog();
             }
+            return result;
         }
 
         #endregion Methods
