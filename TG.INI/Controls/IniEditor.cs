@@ -579,7 +579,7 @@ namespace TG.INI.Controls
 
                         case EntryTypes.KeyValue:
                             var kv = selectedEntry as IniKeyValue;
-                            if (kv.IsEncrypted && CanEncrypt)
+                            if ((kv.IsEncrypted || kv.EncryptValue) && CanEncrypt)
                                 kv.SetEncryptedValue(EncryptionKey, lastValueAdded);
                             else
                                 kv.Value = lastValueAdded;// row.Cells[1].Value as string;
@@ -810,6 +810,9 @@ namespace TG.INI.Controls
         private void ResetIni()
         {
             ini.Sections.Clear();
+            ini.GlobalSection.Clear();
+            for (int i = 0; i < original.GlobalSection.Count; i++)
+                ini.GlobalSection.Add(original.GlobalSection[i]);
             for (int i = 0; i < original.Sections.Count; i++)
                 ini.Sections.Add(original.Sections[i]);
             original = null;

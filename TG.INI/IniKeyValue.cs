@@ -13,6 +13,7 @@
         #region Fields
 
         string _key = null;
+        bool _encryptValue = false;
 
         #endregion Fields
 
@@ -34,6 +35,7 @@
         {
             this.Key = key;
             this.Value = value;
+            this.EncryptValue = IsEncrypted;
         }
 
         /// <summary>
@@ -45,6 +47,29 @@
         {
             this.Key = key;
             this.ValueInt = value;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniKeyValue"/> with a key, value and if the value should be encrypted.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="encryptValue"></param>
+        public IniKeyValue(string key, string value, bool encryptValue) : this(key, value)
+        {
+            this.EncryptValue = encryptValue;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniKeyValue"/> with a key, value and if the value should be encrypted and quoted.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="encryptValue"></param>
+        /// <param name="quoteValue"></param>
+        public IniKeyValue(string key, string value, bool encryptValue, bool quoteValue) : this(key, value, encryptValue)
+        {
+            this.QuoteValue = quoteValue;
         }
 
         #endregion Constructors
@@ -84,7 +109,38 @@
         {
             get; set;
         }
-        
+
+        /// <summary>
+        /// Gets or Sets the base string value of the <see cref="IniKeyValue"/>. 
+        /// </summary>
+        public string BaseValue
+        {
+            get { return base.Value; }
+            set { base.Value = value; }
+        }
+
+        /// <summary>
+        /// Gets or Sets the string value of the entry.
+        /// </summary>
+        public override string Value
+        {
+            get
+            {
+                if (ParentDocument != null && ParentDocument.HasGlobalCrypto && IsEncrypted)
+                    return GetEncryptedValue(ParentDocument.GlobalCrypto);
+                else
+                    return base.Value;
+            }
+
+            set
+            {
+                if (EncryptValue && ParentDocument != null && ParentDocument.HasGlobalCrypto)
+                    SetEncryptedValue(ParentDocument.GlobalCrypto, value);
+                else
+                    base.Value = value;
+            }
+        }
+
         /// <summary>
         /// Gets or Sets the value as a <see cref="bool"/>.
         /// </summary>
@@ -169,7 +225,7 @@
                 Value = value.ToString();
             }
         }
-        
+
         /// <summary>
         /// Gets or Sets the value as an integer type.
         /// </summary>
@@ -211,7 +267,24 @@
         {
             get
             {
-                return !string.IsNullOrEmpty(Value) && Value.Length >= 7 && Value.Substring(0, 7).ToLower() == "crypto:";
+                return !string.IsNullOrEmpty(base.Value) && base.Value.Length >= 7 && base.Value.Substring(0, 7).ToLower() == "crypto:";
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets if the value should be encrypted.
+        /// </summary>
+        public bool EncryptValue
+        {
+            get { return _encryptValue; }
+            set
+            {
+                _encryptValue = value;
+                if (ParentDocument != null && ParentDocument.HasGlobalCrypto)
+                {
+                    if ((value && !IsEncrypted) || (!value && IsEncrypted))
+                        this.Value = this.Value;
+                }
             }
         }
 
@@ -229,11 +302,11 @@
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    this.Value = "crypto:" + c.EncryptBase64(value);
+                    base.Value = "crypto:" + (string.IsNullOrEmpty(value) ? "" : c.EncryptBase64(value));
             }
             catch (Exception)
             {
-                
+
             }
         }
 
@@ -247,12 +320,47 @@
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    this.Value = "crypto:" + c.EncryptBase64(value);
+                    base.Value = "crypto:" + (string.IsNullOrEmpty(value) ? "" : c.EncryptBase64(value));
             }
             catch (Exception)
             {
 
             }
+        }
+
+        /// <summary>
+        /// Sets a value as encrypted.
+        /// </summary>
+        /// <param name="crypto">The <see cref="Crypto"/> to use when encrypting the value.</param>
+        /// <param name="value">The value to encrypt.</param>
+        public void SetEncryptedValue(Crypto crypto, string value)
+        {
+            try
+            {
+                base.Value = "crypto:" + (string.IsNullOrEmpty(value) ? "" : crypto.EncryptBase64(value));
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Gets an encrypted value.
+        /// </summary>
+        /// <param name="crypto">The <see cref="Crypto"/> to use when unencrypting the value.</param>
+        /// <returns>The unencrypted value.</returns>
+        public string GetEncryptedValue(Crypto crypto)
+        {
+            try
+            {
+                return crypto.DecryptBase64(IsEncrypted ? base.Value.Substring(7) : base.Value);
+            }
+            catch (Exception)
+            {
+
+            }
+            return null;
         }
 
         /// <summary>
@@ -265,11 +373,11 @@
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    return c.DecryptBase64(IsEncrypted ? Value.Substring(7) : Value);
+                    return c.DecryptBase64(IsEncrypted ? base.Value.Substring(7) : base.Value);
             }
             catch (Exception)
             {
-                
+
             }
             return null;
         }
@@ -284,7 +392,7 @@
             try
             {
                 using (Crypto c = new Crypto(encryptionKey))
-                    return c.DecryptBase64(IsEncrypted ? Value.Substring(7) : Value);
+                    return c.DecryptBase64(IsEncrypted ? base.Value.Substring(7) : base.Value);
             }
             catch (Exception)
             {
@@ -293,7 +401,16 @@
             return null;
         }
 
-        #endregion
+        internal override void OnParentChanged()
+        {
+            if (ParentDocument != null && ParentDocument.HasGlobalCrypto)
+            {
+                if (EncryptValue && !IsEncrypted)
+                    this.Value = this.Value;
+            }
+        }
+
+        #endregion Methods
 
         /// <summary>
         /// Returns the INI key/value output.
@@ -301,7 +418,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return QuoteValue ? $"{Key}=\"{Value}\"" : $"{Key}={Value}";
+            return QuoteValue || (ParentDocument != null && ParentDocument.QuoteAllValues) ? $"{Key}=\"{base.Value}\"" : $"{Key}={base.Value}";
         }
     }
 }

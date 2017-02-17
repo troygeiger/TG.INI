@@ -61,6 +61,10 @@
     <NamingMethod>Guid</NamingMethod>
     <HelpTitle>TG.INI</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="System.Runtime.CompilerServices" isDocumented="False" />
+<NamespaceSummaryItem name="TG.INI" isDocumented="True">The TG.INI namespace contains all the classes needed to create, read and modify .ini formatted files.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="TG.INI.Controls" isDocumented="True">The TG.INI.Controls contains GUI controls used to edit ini formatted files.</NamespaceSummaryItem></NamespaceSummaries>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

@@ -88,19 +88,47 @@
         }
 
         /// <summary>
+        /// Adds an <see cref="IniKeyValue"/> to this section.
+        /// </summary>
+        /// <param name="keyValue">The <see cref="IniKeyValue"/> to add.</param>
+        public void Add(IniKeyValue keyValue)
+        {
+            if (keyValue == null)
+                return;
+            if (ContainsKey(keyValue.Key))
+                throw new Exception("Key already exists in section.");
+            keyValue.ParentDocument = this.ParentDocument;
+            List.Add(keyValue);
+        }
+
+        /// <summary>
         /// Adds a new key/value entry to the section.
         /// </summary>
-        /// <param name="key">The </param>
-        /// <param name="value">s</param>
-        /// <returns>r</returns>
+        /// <param name="key">The key of the entry.</param>
+        /// <param name="value">The value of the entry.</param>
+        /// <returns>A new instance of <see cref="IniKeyValue"/>.</returns>
         public IniKeyValue AddKeyValue(string key, string value)
+        {
+            return AddKeyValue(key, value, false, false);
+        }
+
+        /// <summary>
+        /// Adds a new key/value entry to the section.
+        /// </summary>
+        /// <param name="key">The key of the entry.</param>
+        /// <param name="value">The value of the entry.</param>
+        /// <param name="encryptValue">Should the value be encrypted?</param>
+        /// <param name="quoteValue">Should the value be quoted?</param>
+        /// <returns>A new instance of <see cref="IniKeyValue"/>.</returns>
+        public IniKeyValue AddKeyValue(string key, string value, bool encryptValue, bool quoteValue)
         {
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException("key");
             if (ContainsKey(key))
                 throw new Exception("Key already exists in section.");
-            var kv = new IniKeyValue(key, value);
-            Add(kv);
+            var kv = new IniKeyValue(key, value, encryptValue, quoteValue);
+            kv.ParentDocument = this.ParentDocument;
+            List.Add(kv);
             return kv;
         }
 

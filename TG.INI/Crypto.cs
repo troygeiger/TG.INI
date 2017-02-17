@@ -8,9 +8,9 @@ namespace TG.INI
     /// <summary>
     /// Provides AES Encryption.
     /// </summary>
-    public class Crypto: IDisposable
+    public class Crypto : IDisposable
     {
-        byte[] cryptKey, 
+        byte[] cryptKey,
             iv = new byte[] { 68, 65, 43, 114, 98, 118, 120, 103, 101, 79, 102, 107, 100, 111, 51, 33 };
         Rijndael aes;
 
@@ -20,6 +20,9 @@ namespace TG.INI
         /// <param name="key">The key, no larger than 32 bytes, to use during encryption and decryption.</param>
         public Crypto(byte[] key)
         {
+            if (key == null || (key != null && key.Length == 0))
+                throw new ArgumentNullException("key");
+
             aes = Rijndael.Create();
             if (key.Length > 32)
                 throw new CryptographicException("Key size too large.");
@@ -35,7 +38,7 @@ namespace TG.INI
         /// </summary>
         /// <param name="key">The key to use during encryption and decryption.</param>
         public Crypto(string key) : this(Encoding.UTF8.GetBytes(key)) { }
-        
+
         /// <summary>
         /// Encrypts a byte array to a byte array.
         /// </summary>
@@ -133,6 +136,8 @@ namespace TG.INI
         /// <returns>Unencrypted string.</returns>
         public string DecryptBase64(string base64)
         {
+            if (string.IsNullOrEmpty(base64))
+                return base64;
             return DecryptToString(Convert.FromBase64String(base64));
         }
 
@@ -146,6 +151,18 @@ namespace TG.INI
             return Decrypt(Convert.FromBase64String(base64));
         }
 
+        /// <summary>
+        /// Gets the encryption key value currently set.
+        /// </summary>
+        public byte[] EncryptionKey
+        {
+            get { return cryptKey; }
+        }
+
+        public string EncryptionKeyAsString()
+        {
+            return Encoding.UTF8.GetString(cryptKey);
+        }
 
         /// <summary>
         /// Disposes the Crypto class.

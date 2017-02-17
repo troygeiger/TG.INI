@@ -9,6 +9,12 @@
     /// </summary>
     public abstract class IniEntry
     {
+        #region Fields
+
+        IniDocument _parent = null;
+
+        #endregion Fields
+
         #region Properties
 
         /// <summary>
@@ -20,13 +26,26 @@
         }
 
         /// <summary>
+        /// Gets the parent <see cref="IniDocument"/>.
+        /// </summary>
+        public IniDocument ParentDocument
+        {
+            get { return _parent; }
+            internal set
+            {
+                _parent = value;
+                OnParentChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or Sets the string value of the entry.
         /// </summary>
         public virtual string Value
         {
             get; set;
         }
-
+        
         #endregion Properties
 
         #region Methods
@@ -41,10 +60,10 @@
         }
 
         /// <summary>
-        /// Gets the parent <see cref="IniDocument"/>.
+        /// This method is invoked when that ParentDocument property has changed.
         /// </summary>
-        public IniDocument ParentDocument { get; internal set; }
-
+        internal virtual void OnParentChanged() { }
+        
         #endregion Methods
     }
 }

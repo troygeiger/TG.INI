@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents an INI file structure.
     /// </summary>
-    public class IniDocument
+    public class IniDocument : IDisposable
     {
         #region Fields
 
@@ -87,6 +87,57 @@
         {
             get { return _sections; }
         }
+                
+        /// <summary>
+        /// The <see cref="Crypto"/> to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
+        /// </summary>
+        public Crypto GlobalCrypto { get; set; }
+
+        /// <summary>
+        /// Gets if the <see cref="GlobalCrypto"/> property is not null.
+        /// </summary>
+        public bool HasGlobalCrypto
+        {
+            get
+            {
+                return GlobalCrypto != null;
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets the encryption key to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
+        /// </summary>
+        public string GlobalEncryptionKeyString
+        {
+            get
+            {
+                return GlobalCrypto?.EncryptionKeyAsString();
+            }
+            set
+            {
+                GlobalCrypto = new Crypto(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets the encryption key to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
+        /// </summary>
+        public byte[] GlobalEncryptionKeyBytes
+        {
+            get
+            {
+                return GlobalCrypto?.EncryptionKey;
+            }
+            set
+            {
+                GlobalCrypto = new Crypto(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets whether all <see cref="IniKeyValue.Value"/> properties should be quoted on output.
+        /// </summary>
+        public bool QuoteAllValues { get; set; }
 
         #endregion Properties
 
@@ -130,6 +181,9 @@
             var id = new IniDocument();
             using (StringReader reader = new StringReader(idata))
                 id.Read(reader);
+            if (HasGlobalCrypto)
+                id.GlobalEncryptionKeyBytes = this.GlobalEncryptionKeyBytes;
+            id.QuoteAllValues = this.QuoteAllValues;
             return id;
         }
 
@@ -316,6 +370,9 @@
         /// </summary>
         public System.Windows.Forms.DialogResult ShowEditor()
         {
+            if (this.HasGlobalCrypto)
+                return ShowEditor(this.GlobalEncryptionKeyBytes, EditorPrivileges.All);
+            
             return ShowEditor("");
         }
 
@@ -329,6 +386,17 @@
                 string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
                  EditorPrivileges.All
                 );
+        }
+
+        /// <summary>
+        /// Shows the IniEditor window for the current IniDocument.
+        /// </summary>
+        /// <param name="privileges">>The privileges that the editor should have.</param>
+        public System.Windows.Forms.DialogResult ShowEditor(EditorPrivileges privileges)
+        {
+            if (this.HasGlobalCrypto)
+                return ShowEditor(this.GlobalEncryptionKeyBytes, privileges);
+            return ShowEditor("", privileges);
         }
 
         /// <summary>
@@ -360,6 +428,20 @@
                 result = editor.ShowDialog();
             }
             return result;
+        }
+
+        /// <summary>
+        /// Disposes the document.
+        /// </summary>
+        public void Dispose()
+        {
+            if (GlobalCrypto != null)
+            {
+                GlobalCrypto.Dispose();
+                GlobalCrypto = null;
+            }
+            Sections.Clear();
+            GlobalSection.Clear();
         }
 
         #endregion Methods
