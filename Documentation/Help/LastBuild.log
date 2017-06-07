@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2015.7.25.0" projectFile="C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Documentation.shfbproj" started="2/16/2017 8:01:47 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2017.1.28.0" projectFile="C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Documentation.shfbproj" started="6/7/2017 10:22:12 AM">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -9,11 +9,11 @@ Locating components in the following folder(s):
     C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation
     C:\ProgramData\EWSoftware\Sandcastle Help File Builder\Components and Plug-Ins\
     C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\
-Framework reflection data location: C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework
+Using framework reflection data for &#39;.NET Framework 2.0&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework&#39;
 Using presentation style &#39;VS2013&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013&#39;
 Loading and initializing plug-ins...
-Lightweight Website Style Version 2015.7.25.0
-Copyright &#169; 2006-2015, Eric Woodruff, All Rights Reserved
+Lightweight Website Style Version 2017.1.28.0
+Copyright &#169; 2006-2017, Eric Woodruff, All Rights Reserved
 Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
 </buildStep>
 <buildStep step="ValidatingDocumentationSources">
@@ -33,156 +33,155 @@ Copying XML comments files
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0156
+</plugIn>    Last step completed in 00:00:00.0155
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0132
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - GenerateRefInfo.proj]
-Build started 2/16/2017 8:01:47 PM.
-The target &quot;_ConvertPdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,37)&quot; does not exist in the project, and will be ignored.
-The target &quot;_CollectPdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,70)&quot; does not exist in the project, and will be ignored.
-The target &quot;_CollectMdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (41,38)&quot; does not exist in the project, and will be ignored.
-The target &quot;_CopyMdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\14.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (41,71)&quot; does not exist in the project, and will be ignored.
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - GenerateRefInfo.proj]
+Build started 6/7/2017 10:22:14 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateRefInfo.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
-  MRefBuilder (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  MRefBuilder (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
+  No source code context base path specified.  Source context information is unavailable.
   Loaded 1 assemblies for reflection and 0 dependency assemblies.
   Wrote information on 2 namespaces, 13 types, and 139 members
   Copying file from &quot;reflection.org&quot; to &quot;reflection.all&quot;.
-  XslTransform (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  XslTransform (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
 Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateRefInfo.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.50
-    Last step completed in 00:00:00.6330
+Time Elapsed 00:00:00.65
+    Last step completed in 00:00:00.9407
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - TransformManifest.proj]
-Build started 2/16/2017 8:01:48 PM.
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - TransformManifest.proj]
+Build started 6/7/2017 10:22:14 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
-  XslTransform (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  XslTransform (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\ApplyVSDocModel.xsl&#39;.
   Copying file from &quot;reflection.xml&quot; to &quot;reflection.nofilenames&quot;.
-  XslTransform (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  XslTransform (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\AddFilenames.xsl&#39;.
-  XslTransform (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  XslTransform (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
 Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TransformManifest.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.63
-    Last step completed in 00:00:00.7171
+Time Elapsed 00:00:00.69
+    Last step completed in 00:00:00.9193
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0847
+    Last step completed in 00:00:00.0390
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\icons\Help.png -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\icons\Help.png
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0095
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0005
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 2/16/2017 8:01:49 PM.
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - GenerateIntermediateTOC.proj]
+Build started 6/7/2017 10:22:15 AM.
 Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
-  XslTransform (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  XslTransform (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
 Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\GenerateIntermediateTOC.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.09
+Time Elapsed 00:00:00.10
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.1899
+    Last step completed in 00:00:00.2982
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.0535
+    Last step completed in 00:00:00.1209
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\sandcastle.config
+  Updating reference topic configurations.
     Replacing default configuration for &#39;Code Block Component&#39; with the custom configuration
-    Last step completed in 00:00:00.0000
+  No conceptual content.  Removing conceptual content components.
+    Last step completed in 00:00:00.0105
 </buildStep>
-<buildStep step="BuildReferenceTopics">
-Building reference help topics...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - BuildReferenceTopics.proj]
-Build started 2/16/2017 8:01:49 PM.
-Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj&quot; on node 1 (default targets).
-BuildReferenceTopics:
-  BuildAssembler (v2015.7.25.0)
-  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+<buildStep step="BuildTopics">
+Building help topics...
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - BuildTopics.proj]
+Build started 6/7/2017 10:22:16 AM.
+Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj&quot; on node 1 (default targets).
+BuildTopics:
+  BuildAssembler (v2017.1.28.0)
+  Copyright c 2006-2017, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2016, Eric Woodruff, All Rights Reserved.
   Loading configuration...
   Processing topics...
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptionKeyAsString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptionKeyAsString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.Byte[],TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String,TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;param name=&quot;entry&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniWhiteSpace] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.#ctor(TG.INI.IniDocument)] Missing &lt;param name=&quot;document&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptionKeyAsString] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.Crypto.EncryptionKeyAsString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.Byte[],TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(System.String,TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniDocument.ShowEditor(TG.INI.EditorPrivileges)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniKeyValue.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.Find(System.String)] Missing &lt;param name=&quot;key&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.RemoveEntry(TG.INI.IniEntry)] Missing &lt;param name=&quot;entry&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.IniSection.ToString] Missing &lt;returns&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:TG.INI.IniWhiteSpace] Missing &lt;summary&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:TG.INI.SectionCollection.#ctor(TG.INI.IniDocument)] Missing &lt;param name=&quot;document&quot;/&gt; documentation [C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj]
   Processed 181 topic(s)
   16 warning(s)
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 4 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
-Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildReferenceTopics.proj&quot; (default targets).
+Done Building Project &quot;C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\BuildTopics.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.52
-    Last step completed in 00:00:05.6499
+Time Elapsed 00:00:06.00
+    Last step completed in 00:00:06.2309
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0035
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - ExtractHtmlInfo.proj]
-Sandcastle Help File Builder and Tools, version 2015.7.25.0
-Copyright c 2006-2015, Eric Woodruff, All Rights Reserved
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - ExtractHtmlInfo.proj]
+Sandcastle Help File Builder and Tools, version 2017.1.28.0
+Copyright c 2006-2017, Eric Woodruff, All Rights Reserved
 E-Mail: Eric@EWoodruff.us
 
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
@@ -192,7 +191,7 @@ Processed 181 HTML files
 Sorting keywords and generating See Also indices
 Saving HTML Help 1 keyword index to C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TG.INI.hhk
 Saving HTML Help 1 table of contents to C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\TG.INI.hhc
-    Last step completed in 00:00:00.2316
+    Last step completed in 00:00:00.3699
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -258,7 +257,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding-zh-CN.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding-zh-CN.css
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding-zh-TW.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding-zh-TW.css
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\styles\branding.css -&gt; C:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\styles\branding.css
-    Last step completed in 00:00:00.3009
+    Last step completed in 00:00:00.4888
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating HTML Help 1 table of contents file...
@@ -270,11 +269,11 @@ Generating HTML Help 1 index file...
 </buildStep>
 <buildStep step="GenerateHelpProject">
 Generating HTML Help 1 project file...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0080
 </buildStep>
 <buildStep step="CompilingHelpFile">
 Compiling HTML Help 1 file...
-[C:\Program Files (x86)\MSBuild\14.0\bin\MSBuild.exe - Build1xHelpFile.proj]
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe - Build1xHelpFile.proj]
   Microsoft HTML Help Compiler 4.74.8702
   
   
@@ -299,19 +298,19 @@ Compiling HTML Help 1 file...
   
   
   
-  Created c:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\TG.INI.chm, 270,211 bytes
+  Created c:\Users\tgeiger\Documents\GitHubVisualStudio\TG.INI\Documentation\Help\Working\Output\HtmlHelp1\TG.INI.chm, 270,981 bytes
   
-  Compression decreased file by 1,534,078 bytes.
+  Compression decreased file by 1,542,598 bytes.
   
-    Last step completed in 00:00:01.6331
+    Last step completed in 00:00:02.1794
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.0690
+    Last step completed in 00:00:00.0876
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 2/16/2017 8:01:57 PM.  Total time: 00:00:10.0638
+Build completed successfully at 6/7/2017 10:22:25 AM.  Total time: 00:00:12.6502
 
 </buildStep>
 </shfbBuild>

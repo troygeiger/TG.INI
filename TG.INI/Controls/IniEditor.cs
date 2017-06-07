@@ -454,7 +454,7 @@ namespace TG.INI.Controls
                 string[] args = Environment.GetCommandLineArgs();
                 if (args.Length == 2)
                     OpenDocument(args[1]);
-                else
+                else if (Document == null)
                     Document = new IniDocument();
             }
         }
@@ -598,6 +598,7 @@ namespace TG.INI.Controls
 
         private void KeyValue_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
+            e.Graphics.SetClip(e.CellBounds);
             if (e.RowIndex >= 0 && e.ColumnIndex == 1)
             {
                 var row = KeyValue.Rows[e.RowIndex];

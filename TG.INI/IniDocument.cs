@@ -221,7 +221,7 @@
             gSection.Clear();
             Sections.Clear();
             var kvRex = new Regex("((.+?)=\"(.*)\")|((.+?)=(.*))");
-            var secRex = new Regex("\\[([a-zA-Z0-9_]+)\\]");
+            var secRex = new Regex("\\[([a-zA-Z0-9_\\s]+)\\]");
 
             try
             {
