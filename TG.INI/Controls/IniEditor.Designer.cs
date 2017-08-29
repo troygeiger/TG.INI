@@ -37,8 +37,6 @@
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.KeyValue = new System.Windows.Forms.DataGridView();
-            this.ColKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtCommentChar = new System.Windows.Forms.ToolStripTextBox();
@@ -55,6 +53,8 @@
             this.btnSave = new System.Windows.Forms.ToolStripSplitButton();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -144,6 +144,7 @@
             // 
             // KeyValue
             // 
+            this.KeyValue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.KeyValue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KeyValue.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColKey,
@@ -163,18 +164,6 @@
             this.KeyValue.CellValuePushed += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.KeyValue_CellValuePushed);
             this.KeyValue.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.KeyValue_RowsRemoved);
             this.KeyValue.SelectionChanged += new System.EventHandler(this.KeyValue_SelectionChanged);
-            // 
-            // ColKey
-            // 
-            this.ColKey.HeaderText = "Key";
-            this.ColKey.Name = "ColKey";
-            this.ColKey.Width = 150;
-            // 
-            // ColValue
-            // 
-            this.ColValue.HeaderText = "Value";
-            this.ColValue.Name = "ColValue";
-            this.ColValue.Width = 300;
             // 
             // toolStrip2
             // 
@@ -217,7 +206,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnOk, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(405, 12);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(9);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -292,7 +281,7 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(24, 19);
+            this.btnNew.Size = new System.Drawing.Size(24, 24);
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -302,7 +291,7 @@
             this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
             this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(24, 19);
+            this.btnOpen.Size = new System.Drawing.Size(24, 24);
             this.btnOpen.Text = "Open";
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -334,6 +323,19 @@
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // ColKey
+            // 
+            this.ColKey.HeaderText = "Key";
+            this.ColKey.MinimumWidth = 100;
+            this.ColKey.Name = "ColKey";
+            // 
+            // ColValue
+            // 
+            this.ColValue.HeaderText = "Value";
+            this.ColValue.MinimumWidth = 200;
+            this.ColValue.Name = "ColValue";
+            this.ColValue.Width = 200;
             // 
             // IniEditor
             // 
@@ -383,8 +385,6 @@
         private System.Windows.Forms.ContextMenuStrip KeyValueMenu;
         private System.Windows.Forms.ToolStripMenuItem quoteValueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encryptValueToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColKey;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txtCommentChar;
@@ -394,5 +394,7 @@
         private System.Windows.Forms.ToolStripSplitButton btnSave;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColKey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;
     }
 }

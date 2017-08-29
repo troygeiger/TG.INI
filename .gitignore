@@ -12,3 +12,4 @@
 *.exe
 *.nuspec
 *.nupkg
+/Documentation/Help/LastBuild.log
