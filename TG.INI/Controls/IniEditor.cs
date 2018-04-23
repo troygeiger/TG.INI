@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TG.INI.Encryption;
 
 namespace TG.INI.Controls
 {
@@ -26,7 +27,7 @@ namespace TG.INI.Controls
 
         private bool cellChanged;
 
-        private byte[] ekey = null;
+        private IEncryptionHandler encryptionHandler = null;
 
         private IniDocument ini = null;
 
@@ -55,6 +56,15 @@ namespace TG.INI.Controls
         {
             InitializeComponent();
             ApplyPrivileges();
+        }
+
+        /// <summary>
+        /// Initializes a new IniEditor with a predefined <see cref="IEncryptionHandler"/>.
+        /// </summary>
+        /// <param name="encryption"></param>
+        public IniEditor(IEncryptionHandler encryption) : this()
+        {
+            encryptionHandler = encryption;
         }
 
         #endregion Constructors
@@ -102,7 +112,7 @@ namespace TG.INI.Controls
         {
             get
             {
-                return EncryptionKey != null && EncryptionKey.Length > 0;
+                return ini?.HasEncryptionHandler == true;
             }
         }
 
@@ -172,42 +182,21 @@ namespace TG.INI.Controls
         }
 
         /// <summary>
-        /// Gets or sets the key used for encryption.
+        /// Get or set the <see cref="IEncryptionHandler"/> to use. This is mostly used while in <see cref="DisplayModes.Standalone"/> but can be used to change the handler for an existing <see cref="IniDocument"/>.
         /// </summary>
-        public byte[] EncryptionKey
+        public IEncryptionHandler EncryptionHandler
         {
             get
             {
-                return ekey;
+                return encryptionHandler;
             }
             set
             {
-                if (value?.Length > 32)
-                    throw new System.Security.Cryptography.CryptographicException("EncryptionKey size too large.");
-                ekey = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the key used for encryption; as a string.
-        /// </summary>
-        /// <remarks>
-        /// This property encodes/decodes the <see cref="EncryptionKey"/> property as UTF8.
-        /// </remarks>
-        public string EncryptionKeyString
-        {
-            get
-            {
-                if (EncryptionKey == null)
-                    return null;
-                return System.Text.Encoding.UTF8.GetString(EncryptionKey);
-            }
-            set
-            {
-                if (value == null)
-                    EncryptionKey = null;
-                else
-                    EncryptionKey = Encoding.UTF8.GetBytes(value);
+                encryptionHandler = value;
+                if (ini != null)
+                {
+                    ini.EncryptionHandler = value;
+                }
             }
         }
 
@@ -399,7 +388,7 @@ namespace TG.INI.Controls
         private void btnNew_Click(object sender, EventArgs e)
         {
             if (CheckDirty())
-                Document = new IniDocument();
+                Document = new IniDocument(EncryptionHandler);
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -438,10 +427,7 @@ namespace TG.INI.Controls
                 if (selectedEntry.EntryType == EntryTypes.KeyValue)
                 {
                     var kv = selectedEntry as IniKeyValue;
-                    if (kv.IsEncrypted)
-                        kv.Value = kv.GetEncryptedValue(EncryptionKey);
-                    else
-                        kv.SetEncryptedValue(EncryptionKey, kv.Value);
+                    kv.EncryptValue = !kv.EncryptValue;
                 }
                 KeyValue.Invalidate();
             }
@@ -500,7 +486,7 @@ namespace TG.INI.Controls
                 return;
             var kv = selectedEntry as IniKeyValue;
             quoteValueToolStripMenuItem.Checked = kv.QuoteValue;
-            encryptValueToolStripMenuItem.Checked = kv.IsEncrypted;
+            encryptValueToolStripMenuItem.Checked = kv.EncryptValue;
             encryptValueToolStripMenuItem.Enabled = CanEncrypt;
             e.ContextMenuStrip = KeyValueMenu;
         }
@@ -579,10 +565,7 @@ namespace TG.INI.Controls
 
                         case EntryTypes.KeyValue:
                             var kv = selectedEntry as IniKeyValue;
-                            if ((kv.IsEncrypted || kv.EncryptValue) && CanEncrypt)
-                                kv.SetEncryptedValue(EncryptionKey, lastValueAdded);
-                            else
-                                kv.Value = lastValueAdded;// row.Cells[1].Value as string;
+                            kv.Value = lastValueAdded;// row.Cells[1].Value as string;
                             Dirty = true;
                             break;
                         default:
@@ -611,31 +594,25 @@ namespace TG.INI.Controls
                     {
                         var kv = ie as IniKeyValue;
 
-                        if (kv.IsEncrypted)
+                        if (kv.EncryptValue || kv.QuoteValue)
                         {
                             e.PaintBackground(e.ClipBounds, selected);
-                            if (kv.QuoteValue && CanEncrypt)
+                            if (kv.QuoteValue)
                             {
                                 var txtSize = e.Graphics.MeasureString(kv.Value, e.CellStyle.Font);
-                                e.Graphics.DrawString($"\"{kv.GetEncryptedValue(EncryptionKey)}\"", e.CellStyle.Font,
+                                e.Graphics.DrawString($"\"{kv.Value}\"", e.CellStyle.Font,
                                     selected ? Brushes.White : Brushes.Black, e.CellBounds.Left + 3,
                                     e.CellBounds.Top + ((e.CellBounds.Height / 2) - (txtSize.Height / 2)));
                             }
                             else
                                 e.PaintContent(e.ClipBounds);
 
-                            e.Graphics.DrawImage(Properties.Resources.Lock16, e.CellBounds.Right - 19,
+                            if (kv.EncryptValue)
+                            {
+                                e.Graphics.DrawImage(Properties.Resources.Lock16, e.CellBounds.Right - 19,
                                 e.CellBounds.Top + ((e.CellBounds.Height / 2) - 8));
+                            }
 
-                            e.Handled = true;
-                        }
-                        else if (kv.QuoteValue)
-                        {
-                            e.PaintBackground(e.ClipBounds, selected);
-                            var txtSize = e.Graphics.MeasureString(kv.Value, e.CellStyle.Font);
-                            e.Graphics.DrawString($"\"{kv.Value}\"", e.CellStyle.Font,
-                                selected ? Brushes.White : Brushes.Black, e.CellBounds.Left + 3,
-                                e.CellBounds.Top + ((e.CellBounds.Height / 2) - (txtSize.Height / 2)));
                             e.Handled = true;
                         }
                     }
@@ -682,10 +659,7 @@ namespace TG.INI.Controls
                         else if (ie.EntryType == EntryTypes.KeyValue)
                         {
                             var kv = ie as IniKeyValue;
-                            if (kv.IsEncrypted && CanEncrypt)
-                                e.Value = kv.GetEncryptedValue(EncryptionKey);
-                            else
-                                e.Value = kv.Value;
+                            e.Value = kv.Value;
                         }
 
                         break;
@@ -736,7 +710,7 @@ namespace TG.INI.Controls
         {
             try
             {
-                Document = new IniDocument(path);
+                Document = new IniDocument(path, EncryptionHandler);
                 DocumentPath = path;
             }
             catch (Exception ex)

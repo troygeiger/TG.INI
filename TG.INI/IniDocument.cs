@@ -1,11 +1,13 @@
-﻿namespace TG.INI
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Text;
-    using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using TG.INI.Encryption;
 
+namespace TG.INI
+{
+    
     /// <summary>
     /// Represents an INI file structure.
     /// </summary>
@@ -14,6 +16,8 @@
         #region Fields
 
         SectionCollection _sections;
+        
+        Serialization.ISerializer serializer = null;
 
         #endregion Fields
 
@@ -39,6 +43,26 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of <see cref="IniDocument"/> with a designated <see cref="IEncryptionHandler"/>.
+        /// </summary>
+        /// <param name="encryptionHandler">The <see cref="IEncryptionHandler"/> to be set to <see cref="EncryptionHandler"/>.</param>
+        public IniDocument(IEncryptionHandler encryptionHandler) : this()
+        {
+            EncryptionHandler = encryptionHandler;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniDocument"/> then reads from a path.
+        /// </summary>
+        /// <param name="path">The path to an INI file.</param>
+        /// <param name="encryptionHandler">The <see cref="IEncryptionHandler"/> to user for decrypting values.</param>
+        public IniDocument(string path, IEncryptionHandler encryptionHandler) : this()
+        {
+            EncryptionHandler = encryptionHandler;
+            Read(path);
+        }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="IniDocument"/> then reads from a stream. 
         /// </summary>
         /// <param name="stream">The stream to read from.</param>
@@ -47,6 +71,26 @@
             Read(stream);
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniDocument"/> then reads from a stream. 
+        /// </summary>
+        /// <param name="stream">The stream to read from.</param>
+        /// <param name="encryptionHandler">The <see cref="IEncryptionHandler"/> to user for decrypting values.</param>
+        public IniDocument(Stream stream, IEncryptionHandler encryptionHandler) : this()
+        {
+            EncryptionHandler = encryptionHandler;
+            Read(stream);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniDocument"/> and deserializes the provided object.
+        /// </summary>
+        /// <param name="obj">The object to deserialize.</param>
+        public IniDocument(object obj) : this()
+        {
+            Serialization.IniSerialization.SerializeObjectIntoDocument(obj, this);
+        }
+        
         #endregion Constructors
 
         /// <summary>
@@ -87,53 +131,23 @@
         {
             get { return _sections; }
         }
-                
-        /// <summary>
-        /// The <see cref="Crypto"/> to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
-        /// </summary>
-        public Crypto GlobalCrypto { get; set; }
 
         /// <summary>
-        /// Gets if the <see cref="GlobalCrypto"/> property is not null.
+        /// Get or set the <see cref="IEncryptionHandler"/> to use for encryption.
         /// </summary>
-        public bool HasGlobalCrypto
+        public IEncryptionHandler EncryptionHandler { get; set; }
+        
+        /// <summary>
+        /// Gets if the <see cref="EncryptionHandler"/> property is not null.
+        /// </summary>
+        public bool HasEncryptionHandler
         {
             get
             {
-                return GlobalCrypto != null;
+                return EncryptionHandler != null;
             }
         }
-
-        /// <summary>
-        /// Gets or Sets the encryption key to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
-        /// </summary>
-        public string GlobalEncryptionKeyString
-        {
-            get
-            {
-                return GlobalCrypto?.EncryptionKeyAsString();
-            }
-            set
-            {
-                GlobalCrypto = new Crypto(value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or Sets the encryption key to use for all <seealso cref="IniKeyValue"/> with the <seealso cref="IniKeyValue.EncryptValue"/> set to true.
-        /// </summary>
-        public byte[] GlobalEncryptionKeyBytes
-        {
-            get
-            {
-                return GlobalCrypto?.EncryptionKey;
-            }
-            set
-            {
-                GlobalCrypto = new Crypto(value);
-            }
-        }
-
+        
         /// <summary>
         /// Gets or Sets whether all <see cref="IniKeyValue.Value"/> properties should be quoted on output.
         /// </summary>
@@ -159,13 +173,24 @@
         /// <summary>
         /// Parses an INI string.
         /// </summary>
-        /// <param name="iniData">A new instance of <see cref="IniDocument"/>.</param>
+        /// <param name="iniData">A string of INI text data.</param>
         /// <returns><see cref="IniDocument"/></returns>
         public static IniDocument Parse(string iniData)
         {
+            return Parse(iniData, null);
+        }
+
+        /// <summary>
+        /// Parses an INI string.
+        /// </summary>
+        /// <param name="iniData">A string of INI text data.</param>
+        /// <param name="globalEncryptionHandler">The <see cref="IEncryptionHandler"/> to use for decryption.</param>
+        /// <returns>A new instance of <see cref="IniDocument"/>.</returns>
+        public static IniDocument Parse(string iniData, IEncryptionHandler globalEncryptionHandler)
+        {
             using (StringReader reader = new StringReader(iniData))
             {
-                var i = new IniDocument();
+                var i = new IniDocument(globalEncryptionHandler);
                 i.Read(reader);
                 return i;
             }
@@ -178,11 +203,11 @@
         public IniDocument Clone()
         {
             string idata = this.ToString();
-            var id = new IniDocument();
+            var id = new IniDocument(this.EncryptionHandler);
             using (StringReader reader = new StringReader(idata))
                 id.Read(reader);
-            if (HasGlobalCrypto)
-                id.GlobalEncryptionKeyBytes = this.GlobalEncryptionKeyBytes;
+            
+            
             id.QuoteAllValues = this.QuoteAllValues;
             return id;
         }
@@ -239,9 +264,15 @@
                         if (m.Success)
                         {
                             if (m.Groups[2].Length > 0)
-                                gSection.Add(new IniKeyValue(m.Groups[2].Value, m.Groups[3].Value) { QuoteValue = true });
+                            {
+                                //gSection.Add(new IniKeyValue(m.Groups[2].Value, m.Groups[3].Value) { QuoteValue = true });
+                                gSection.InternalAddKeyValue(m.Groups[2].Value, m.Groups[3].Value, true);
+                            }
                             else if (m.Groups[5].Length > 0)
-                                gSection.AddKeyValue(m.Groups[5].Value, m.Groups[6].Value);
+                            {
+                                //gSection.Add(new IniKeyValue(m.Groups[5].Value, m.Groups[6].Value));
+                                gSection.InternalAddKeyValue(m.Groups[5].Value, m.Groups[6].Value, false);
+                            }
                         }
                         else
                         {
@@ -370,60 +401,19 @@
         /// </summary>
         public System.Windows.Forms.DialogResult ShowEditor()
         {
-            if (this.HasGlobalCrypto)
-                return ShowEditor(this.GlobalEncryptionKeyBytes, EditorPrivileges.All);
-            
-            return ShowEditor("");
+            return ShowEditor(EditorPrivileges.All);
         }
-
-        /// <summary>
-        /// Shows the IniEditor window for the current IniDocument.
-        /// </summary>
-        /// <param name="encryptionKey">The key to use for encryption and decryption.</param>
-        public System.Windows.Forms.DialogResult ShowEditor(string encryptionKey)
-        {
-            return ShowEditor(
-                string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
-                 EditorPrivileges.All
-                );
-        }
-
+        
         /// <summary>
         /// Shows the IniEditor window for the current IniDocument.
         /// </summary>
         /// <param name="privileges">>The privileges that the editor should have.</param>
         public System.Windows.Forms.DialogResult ShowEditor(EditorPrivileges privileges)
         {
-            if (this.HasGlobalCrypto)
-                return ShowEditor(this.GlobalEncryptionKeyBytes, privileges);
-            return ShowEditor("", privileges);
-        }
-
-        /// <summary>
-        /// Shows the IniEditor window for the current IniDocument.
-        /// </summary>
-        /// <param name="encryptionKey">The key used for encryption and decryption.</param>
-        /// <param name="privileges">The privileges that the editor should have.</param>
-        public System.Windows.Forms.DialogResult ShowEditor(string encryptionKey, EditorPrivileges privileges)
-        {
-            return ShowEditor(
-                 string.IsNullOrEmpty(encryptionKey) ? null : Encoding.UTF8.GetBytes(encryptionKey),
-                  privileges
-                 );
-        }
-
-        /// <summary>
-        /// Shows the IniEditor window for the current IniDocument.
-        /// </summary>
-        /// <param name="encryptionKey">The key used for encryption and decryption.</param>
-        /// <param name="privileges">The privileges that the editor should have.</param>
-        public System.Windows.Forms.DialogResult ShowEditor(byte[] encryptionKey, EditorPrivileges privileges)
-        {
             System.Windows.Forms.DialogResult result;
             using (var editor = new Controls.IniEditor())
             {
                 editor.LoadDocument(this);
-                editor.EncryptionKey = encryptionKey;
                 editor.Privileges = privileges;
                 result = editor.ShowDialog();
             }
@@ -435,10 +425,10 @@
         /// </summary>
         public void Dispose()
         {
-            if (GlobalCrypto != null)
+            if (EncryptionHandler != null)
             {
-                GlobalCrypto.Dispose();
-                GlobalCrypto = null;
+                EncryptionHandler.Dispose();
+                EncryptionHandler = null;
             }
             Sections.Clear();
             GlobalSection.Clear();

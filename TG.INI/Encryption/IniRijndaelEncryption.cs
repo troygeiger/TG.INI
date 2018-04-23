@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace TG.INI
+namespace TG.INI.Encryption
 {
+
     /// <summary>
-    /// Provides AES Encryption.
+    /// Provides <see cref="Rijndael"/> encryption.
     /// </summary>
-    public class Crypto : IDisposable
+    public class IniRijndaelEncryption : IEncryptionHandler
     {
-        byte[] cryptKey,
-            iv = new byte[] { 68, 65, 43, 114, 98, 118, 120, 103, 101, 79, 102, 107, 100, 111, 51, 33 };
+        byte[] cryptKey, iv;
         Rijndael aes;
 
         /// <summary>
-        /// Creates an instance of <see cref="Crypto"/>.
+        /// Creates an instance of <see cref="IniRijndaelEncryption"/>.
         /// </summary>
         /// <param name="key">The key, no larger than 32 bytes, to use during encryption and decryption.</param>
-        public Crypto(byte[] key)
+        public IniRijndaelEncryption(byte[] key)
         {
             if (key == null || (key != null && key.Length == 0))
                 throw new ArgumentNullException("key");
@@ -31,13 +31,16 @@ namespace TG.INI
                 cryptKey[i] = key[i];
 
             aes.Key = cryptKey;
+            aes.IV = new byte[] { 68, 65, 43, 114, 98, 118, 120, 103, 101, 79, 102, 107, 100, 111, 51, 33 };
         }
 
+
+
         /// <summary>
-        /// Creates an instance of <see cref="Crypto"/>.
+        /// Creates an instance of <see cref="IniRijndaelEncryption"/>.
         /// </summary>
         /// <param name="key">The key to use during encryption and decryption.</param>
-        public Crypto(string key) : this(Encoding.UTF8.GetBytes(key)) { }
+        public IniRijndaelEncryption(string key) : this(Encoding.UTF8.GetBytes(key)) { }
 
         /// <summary>
         /// Encrypts a byte array to a byte array.
@@ -46,11 +49,7 @@ namespace TG.INI
         /// <returns>Encrypted byte array.</returns>
         public byte[] Encrypt(byte[] bytes)
         {
-            if (cryptKey == null || iv == null)
-                return null;
-            if (cryptKey.Length < 32)
-                return null;
-            using (var enc = aes.CreateEncryptor(cryptKey, iv))
+            using (var enc = aes.CreateEncryptor())
             {
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
                 {
@@ -71,6 +70,7 @@ namespace TG.INI
         /// <returns>Encrypted byte array.</returns>
         public byte[] Encrypt(string text)
         {
+            if (string.IsNullOrEmpty(text)) return new byte[0];
             return Encrypt(System.Text.Encoding.Unicode.GetBytes(text));
         }
 
@@ -81,6 +81,7 @@ namespace TG.INI
         /// <returns>Encrypted base64 string.</returns>
         public string EncryptBase64(string text)
         {
+            if (string.IsNullOrEmpty(text)) return text;
             return Convert.ToBase64String(Encrypt(text));
         }
 
@@ -91,6 +92,7 @@ namespace TG.INI
         /// <returns>Encrypted base64 string.</returns>
         public string EncryptBase64(byte[] bytes)
         {
+            if (bytes == null) return null;
             return Convert.ToBase64String(Encrypt(bytes));
         }
 
@@ -101,11 +103,8 @@ namespace TG.INI
         /// <returns>Unencrypted byte array.</returns>
         public byte[] Decrypt(byte[] bytes)
         {
-            if (cryptKey == null || iv == null)
-                return null;
-            if (cryptKey.Length < 32)
-                return null;
-            using (var enc = aes.CreateDecryptor(cryptKey, iv))
+            if (bytes == null) return null;
+            using (var enc = aes.CreateDecryptor())
             {
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
                 {
@@ -159,6 +158,10 @@ namespace TG.INI
             get { return cryptKey; }
         }
 
+        /// <summary>
+        /// Returns the EncryptionKey as a UTF8 string.
+        /// </summary>
+        /// <returns>string</returns>
         public string EncryptionKeyAsString()
         {
             return Encoding.UTF8.GetString(cryptKey);

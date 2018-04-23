@@ -50,9 +50,10 @@
     <Compile Include="Controls\IniEditor.Designer.cs">
       <DependentUpon>IniEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Crypto.cs" />
+    <Compile Include="Encryption\IniRijndaelEncryption.cs" />
     <Compile Include="EditorPrivileges.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Encryption\IEncryptionHandler.cs" />
     <Compile Include="IniComment.cs" />
     <Compile Include="IniDocument.cs" />
     <Compile Include="IniEntry.cs" />
@@ -66,6 +67,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SectionCollection.cs" />
+    <Compile Include="Serialization\IniEncryptValueAttribute.cs" />
+    <Compile Include="Serialization\IniIgnorePropertyAttribute.cs" />
+    <Compile Include="Serialization\IniPropertyAttribute.cs" />
+    <Compile Include="Serialization\IniQuoteValueAttribute.cs" />
+    <Compile Include="Serialization\IniSerialization.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\IniEditor.resx">
@@ -78,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Lock16.png" />
+    <None Include="TG.INI.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

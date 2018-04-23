@@ -12,8 +12,18 @@
         #region Fields
 
         IniDocument _parent = null;
+        string _value = null;
 
         #endregion Fields
+
+        #region Events
+
+        /// <summary>
+        /// Event that is called when a value has changed.
+        /// </summary>
+        public event EventHandler ValueChanged;
+
+        #endregion Events
 
         #region Properties
 
@@ -43,7 +53,15 @@
         /// </summary>
         public virtual string Value
         {
-            get; set;
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+                OnValueChanged();
+            }
         }
         
         #endregion Properties
@@ -64,6 +82,11 @@
         /// </summary>
         internal virtual void OnParentChanged() { }
         
+        internal virtual void OnValueChanged()
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         #endregion Methods
     }
 }

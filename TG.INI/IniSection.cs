@@ -95,12 +95,16 @@
         {
             if (keyValue == null)
                 return;
+            if (string.IsNullOrEmpty(keyValue.Key))
+            {
+                throw new InvalidOperationException("A IniKeyValue cannot be added without a Key.");
+            }
             if (ContainsKey(keyValue.Key))
                 throw new Exception("Key already exists in section.");
             keyValue.ParentDocument = this.ParentDocument;
             List.Add(keyValue);
         }
-
+                
         /// <summary>
         /// Adds a new key/value entry to the section.
         /// </summary>
@@ -128,6 +132,21 @@
                 throw new Exception("Key already exists in section.");
             var kv = new IniKeyValue(key, value, encryptValue, quoteValue);
             kv.ParentDocument = this.ParentDocument;
+            List.Add(kv);
+            return kv;
+        }
+
+        internal IniKeyValue InternalAddKeyValue(string key, string value, bool quoteValue)
+        {
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException("key");
+            if (ContainsKey(key))
+                throw new Exception("Key already exists in section.");
+            var kv = new IniKeyValue();
+            kv.ParentDocument = this.ParentDocument;
+            kv.Key = key;
+            kv.Value = value;
+            kv.QuoteValue = quoteValue;
             List.Add(kv);
             return kv;
         }
