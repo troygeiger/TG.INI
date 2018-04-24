@@ -425,11 +425,11 @@ namespace TG.INI
         /// </summary>
         public void Dispose()
         {
-            if (EncryptionHandler != null)
-            {
-                EncryptionHandler.Dispose();
-                EncryptionHandler = null;
-            }
+            //if (EncryptionHandler != null)
+            //{
+            //    EncryptionHandler.Dispose();
+            //    EncryptionHandler = null;
+            //}
             Sections.Clear();
             GlobalSection.Clear();
         }

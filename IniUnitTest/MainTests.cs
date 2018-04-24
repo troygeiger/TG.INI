@@ -82,7 +82,7 @@ namespace IniUnitTest
         {
             EncryptType obj = new EncryptType() { Value = "Hello World" };
             IniDocument document = new IniDocument(obj);
-            document.EncryptionHandler = new IniRijndaelEncryption("Bla");
+            document.EncryptionHandler = new IniRijndaelEncryption("67A68B03CC2A4104AA153D2EDAA76BE4");
             string ini = document.ToString();
             int c = ini.IndexOf("crypto:");
             if (c <= 0)
