@@ -81,7 +81,7 @@ namespace TG.INI.Serialization
                 {
                     continue;
                 }
-                
+
                 if (prop.Category == null)
                 {
                     section = document.GlobalSection;
@@ -96,58 +96,95 @@ namespace TG.INI.Serialization
                 IniKeyValue kv = section[prop.Name];
 
                 //string l = prop.PropertyType.FullName.ToLower();
-
-                switch (prop.PropertyType.FullName.ToLower())
+                bool converted = false;
+                if (prop.TypeConverter != null)
                 {
-                    case "system.string":
-                        prop.SetValue(obj, kv.Value, null);
-                        break;
-                    case "system.boolean":
-                        prop.SetValue(obj, kv.ValueBoolean, null);
-                        break;
-                    case "system.byte":
-                        prop.SetValue(obj, kv.ValueByte, null);
-                        break;
-                    case "system.int16":
-                        prop.SetValue(obj, kv.ValueInt16, null);
-                        break;
-                    case "system.int32":
-                        prop.SetValue(obj, kv.ValueInt, null);
-                        break;
-                    case "system.int64":
-                        prop.SetValue(obj, kv.ValueInt64, null);
-                        break;
-                    case "system.single":
-                        prop.SetValue(obj, kv.ValueFloat, null);
-                        break;
-                    case "system.double":
-                        prop.SetValue(obj, kv.ValueDouble, null);
-                        break;
-                    case "system.decimal":
-                        prop.SetValue(obj, kv.ValueDecimal, null);
-                        break;
-                    case "system.datetime":
-                        prop.SetValue(obj, kv.ValueDateTime, null);
-                        break;
-                    case "system.drawing.color":
-                        prop.SetValue(obj, kv.ValueColor, null);
-                        break;
-                    case "system.drawing.point":
-                        prop.SetValue(obj, kv.ValuePoint, null);
-                        break;
-                    case "system.drawing.pointf":
-                        prop.SetValue(obj, kv.ValuePointF, null);
-                        break;
-                    case "system.drawing.rectagle":
-                        prop.SetValue(obj, kv.ValueRectangle, null);
-                        break;
-                    case "system.drawing.rectanglef":
-                        prop.SetValue(obj, kv.ValueRectangleF, null);
-                        break;
-                    default:
-                        break;
+                    try
+                    {
+                        if (prop.TypeConverter.CanConvertFrom(typeof(string)))
+                        {
+                            prop.SetValue(obj, prop.TypeConverter.ConvertFrom(kv.Value), null);
+                            converted = true;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
+                        converted = true;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
 
+                if (!converted)
+                {
+                    switch (prop.PropertyType.FullName.ToLower())
+                    {
+                        case "system.string":
+                            prop.SetValue(obj, kv.Value, null);
+                            break;
+                        case "system.boolean":
+                            prop.SetValue(obj, kv.ValueBoolean, null);
+                            break;
+                        case "system.byte":
+                            prop.SetValue(obj, kv.ValueByte, null);
+                            break;
+                        case "system.int16":
+                            prop.SetValue(obj, kv.ValueInt16, null);
+                            break;
+                        case "system.int32":
+                            prop.SetValue(obj, kv.ValueInt, null);
+                            break;
+                        case "system.int64":
+                            prop.SetValue(obj, kv.ValueInt64, null);
+                            break;
+                        case "system.single":
+                            prop.SetValue(obj, kv.ValueFloat, null);
+                            break;
+                        case "system.double":
+                            prop.SetValue(obj, kv.ValueDouble, null);
+                            break;
+                        case "system.decimal":
+                            prop.SetValue(obj, kv.ValueDecimal, null);
+                            break;
+                        case "system.datetime":
+                            prop.SetValue(obj, kv.ValueDateTime, null);
+                            break;
+                        case "system.drawing.color":
+                            prop.SetValue(obj, kv.ValueColor, null);
+                            break;
+                        case "system.drawing.point":
+                            prop.SetValue(obj, kv.ValuePoint, null);
+                            break;
+                        case "system.drawing.pointf":
+                            prop.SetValue(obj, kv.ValuePointF, null);
+                            break;
+                        case "system.drawing.size":
+                            prop.SetValue(obj, kv.ValueSize, null);
+                            break;
+                        case "system.drawing.sizef":
+                            prop.SetValue(obj, kv.ValueSizeF, null);
+                            break;
+                        case "system.drawing.rectagle":
+                            prop.SetValue(obj, kv.ValueRectangle, null);
+                            break;
+                        case "system.drawing.rectanglef":
+                            prop.SetValue(obj, kv.ValueRectangleF, null);
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
 
@@ -219,7 +256,14 @@ namespace TG.INI.Serialization
                 object value = prop.GetValue(obj, null);
                 if (value != null)
                 {
-                    kv.Value = value.ToString();
+                    if (prop.TypeConverter?.CanConvertTo(typeof(string)) == true)
+                    {
+                        kv.Value = prop.TypeConverter.ConvertTo(value, typeof(string)) as string;
+                    }
+                    else
+                    {
+                        kv.Value = value.ToString();
+                    }
                 }
                 else
                 {
@@ -246,7 +290,7 @@ namespace TG.INI.Serialization
             {
                 return constructorCache[type];
             }
-            
+
             foreach (ConstructorInfo constructor in type.GetConstructors())
             {
                 if (constructor.GetParameters().Length == 0)
@@ -348,6 +392,8 @@ namespace TG.INI.Serialization
                 get { return Info.PropertyType; }
             }
 
+            public TypeConverter TypeConverter { get; private set; }
+
             #endregion Properties
 
             #region Methods
@@ -366,6 +412,18 @@ namespace TG.INI.Serialization
             {
                 foreach (object att in Info.GetCustomAttributes(false))
                 {
+                    TypeConverterAttribute tconvt = att as TypeConverterAttribute;
+
+                    if (!string.IsNullOrEmpty(tconvt?.ConverterTypeName))
+                    {
+                        try
+                        {
+                            Type ctype = Type.GetType(tconvt.ConverterTypeName);
+                            TypeConverter = Activator.CreateInstance(ctype) as TypeConverter;
+                        }
+                        catch (Exception) { }
+                    }
+
                     CategoryAttribute cat = att as CategoryAttribute;
 
                     if (cat != null)
@@ -391,6 +449,25 @@ namespace TG.INI.Serialization
                         QuoteValue = true;
                     }
                 }
+
+                if (TypeConverter == null)
+                {
+                    foreach (object att in Info.PropertyType.GetCustomAttributes(true))
+                    {
+                        TypeConverterAttribute tconvt = att as TypeConverterAttribute;
+
+                        if (!string.IsNullOrEmpty(tconvt?.ConverterTypeName))
+                        {
+                            try
+                            {
+                                Type ctype = Type.GetType(tconvt.ConverterTypeName);
+                                TypeConverter = Activator.CreateInstance(ctype) as TypeConverter;
+                            }
+                            catch (Exception) { }
+                        }
+                    }
+                }
+
             }
 
             #endregion Methods

@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TG.INI;
 using TG.INI.Serialization;
 using TG.INI.Encryption;
+using System.Globalization;
 
 namespace IniUnitTest
 {
@@ -53,7 +54,7 @@ namespace IniUnitTest
             IniDocument document = GetTestDocument();
             TestObj obj = IniSerialization.DeserializeDocument<TestObj>(document);
         }
-        
+
         [TestMethod]
         public void TestRoundTripSerialization()
         {
@@ -64,7 +65,7 @@ namespace IniUnitTest
                 NumberValue = 100,
                 ColorValue = Color.Purple,
                 PointValue = new PointF(20, 50),
-                RectangleValue = new RectangleF(1,2, 3, 4)
+                RectangleValue = new RectangleF(1, 2, 3, 4)
             };
             IniDocument doc = IniSerialization.SerializeObjectToNewDocument(obj);
             string ini = doc.ToString();
@@ -89,14 +90,14 @@ namespace IniUnitTest
             {
                 Assert.Fail("Missing crypto: in ini string.");
             }
-            else if (ini.Substring(c+7).Length == 0)
+            else if (ini.Substring(c + 7).Length == 0)
             {
                 Assert.Fail("Value was not encrypted.");
             }
             document = IniDocument.Parse(ini, document.EncryptionHandler);
             EncryptType obj2 = IniSerialization.DeserializeDocument<EncryptType>(document);
             Assert.AreEqual(obj.Value, obj2.Value);
-            
+
         }
 
         [TestMethod]
@@ -111,7 +112,7 @@ namespace IniUnitTest
             {
                 Assert.Fail("Missing crypto: in ini string.");
             }
-           
+
             document = IniDocument.Parse(ini, document.EncryptionHandler);
             EncryptType obj2 = IniSerialization.DeserializeDocument<EncryptType>(document);
             Assert.AreEqual(string.IsNullOrEmpty(obj.Value), string.IsNullOrEmpty(obj2.Value));
@@ -122,15 +123,31 @@ namespace IniUnitTest
         {
             IniDocument document = GetTestDocument(new IniRijndaelEncryption("Bla"));
             document.GlobalSection["GlobalEntry"].EncryptValue = true;
-            
+
             if (document.ShowEditor() == DialogResult.Cancel)
             {
                 string value = document.GlobalSection["GlobalEntry"].Value;
             }
         }
-        
+
+        [TestMethod]
+        public void TestTypeConvertion()
+        {
+            ConvertObj obj = new ConvertObj()
+            {
+                TestPoint = new Point(1, 1),
+                WindowState = FormWindowState.Maximized,
+                IntValue = 20
+            };
+            var ini = IniSerialization.SerializeObjectToNewDocument(obj);
+            ConvertObj obj2 = IniSerialization.DeserializeDocument<ConvertObj>(ini);
+            Assert.AreEqual(obj.IntValue, obj2.IntValue);
+            Assert.AreEqual(obj.TestPoint, obj2.TestPoint);
+            Assert.AreEqual(obj.WindowState, obj2.WindowState);
+        }
+
     }
-    
+
     public class TestObj
     {
         [IniQuoteValue]
@@ -152,12 +169,38 @@ namespace IniUnitTest
 
         public string IShouldStayNull { get; set; }
 
-        
+
     }
 
     public class EncryptType
     {
         [IniEncryptValue]
         public string Value { get; set; }
+    }
+
+    public class ConvertObj
+    {
+        [TypeConverter(typeof(WinStateConverter))]
+        public FormWindowState WindowState { get; set; }
+
+        public Point TestPoint { get; set; }
+
+        public int IntValue { get; set; }
+    }
+
+    public class WinStateConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        {
+            return sourceType == typeof(string);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            FormWindowState state;
+            Enum.TryParse<FormWindowState>(value as string, out state);
+            return state;
+        }
+
     }
 }
