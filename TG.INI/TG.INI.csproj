@@ -91,7 +91,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-msbuild $(SolutionDir)\Documentation\Documentation.shfbproj
+msbuild.exe $(SolutionDir)Documentation\Documentation.shfbproj
 if EXIST $(ProjectDir)nuget.exe (
 cd $(ProjectDir)
 nuget.exe pack $(ProjectFileName) -Prop Configuration=Release

@@ -180,7 +180,7 @@ namespace IniUnitTest
 
     public class ConvertObj
     {
-        [TypeConverter(typeof(WinStateConverter))]
+        //[TypeConverter(typeof(WinStateConverter))]
         public FormWindowState WindowState { get; set; }
 
         public Point TestPoint { get; set; }

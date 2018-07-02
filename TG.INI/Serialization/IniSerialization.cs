@@ -117,7 +117,15 @@ namespace TG.INI.Serialization
                 {
                     try
                     {
-                        prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
+                        if (prop.PropertyType.IsEnum)
+                        {
+                            prop.SetValue(obj, Enum.Parse(prop.PropertyType, kv.Value), null);
+                        }
+                        else
+                        {
+                            prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
+                        }
+
                         converted = true;
                     }
                     catch (Exception)
