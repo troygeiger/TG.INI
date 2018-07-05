@@ -10,6 +10,19 @@ namespace TG.INI.Serialization
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = false)]
     public class IniPropertyAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniPropertyAttribute"/>
+        /// </summary>
+        public IniPropertyAttribute() { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniPropertyAttribute"/>
+        /// </summary>
+        /// <param name="nameOverride">A name that should be used in place of the original property name.</param>
+        public IniPropertyAttribute(string nameOverride)
+        {
+            PropertyNameOverride = nameOverride;
+        }
 
         /// <summary>
         /// Gets an overridden property name.
