@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using TG.INI.Encryption;
 
 namespace TG.INI.Serialization
 {
@@ -18,7 +19,28 @@ namespace TG.INI.Serialization
         static Dictionary<Type, PropertyInfoEx[]> propertyCache = new Dictionary<Type, PropertyInfoEx[]>();
         static IniSerialization _instance = null;
 
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        public IniSerialization()
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance and specifies the <see cref="Encryption.IEncryptionHandler"/> to use when serializing and deserializing.
+        /// </summary>
+        public IniSerialization(IEncryptionHandler encryptionHandler)
+        {
+            EncryptionHandler = encryptionHandler;
+        }
+
+
         #endregion Fields
+
+        /// <summary>
+        /// Specifies the <see cref="INI.Encryption.IEncryptionHandler"/> to use when serializing and deserializing.
+        /// </summary>
+        public INI.Encryption.IEncryptionHandler EncryptionHandler { get; set; }
 
         private static IniSerialization Instance
         {
@@ -42,6 +64,7 @@ namespace TG.INI.Serialization
         /// <returns>A new instance of T type.</returns>
         public virtual T Deserialize<T>(IniDocument document)
         {
+            
             ConstructorInfo constructor = GetConstructor(typeof(T));
 
             if (constructor == null)
@@ -50,7 +73,9 @@ namespace TG.INI.Serialization
             }
 
             object obj = constructor.Invoke(null);
+            
             DeserializeInto(document, obj);
+            
             return (T)obj;
         }
 
@@ -72,6 +97,9 @@ namespace TG.INI.Serialization
         /// <param name="obj">The object to deserialize into.</param>
         public virtual void DeserializeInto(IniDocument document, object obj)
         {
+            Encryption.IEncryptionHandler originalHandler = document.EncryptionHandler;
+            if (EncryptionHandler != null) document.EncryptionHandler = EncryptionHandler;
+
             if (obj == null) return;
             IniSection section = document.GlobalSection;
 
@@ -194,6 +222,7 @@ namespace TG.INI.Serialization
                     }
                 }
             }
+            document.EncryptionHandler = originalHandler;
         }
 
         /// <summary>
@@ -239,6 +268,8 @@ namespace TG.INI.Serialization
             {
                 return;
             }
+            Encryption.IEncryptionHandler originalHandler = document.EncryptionHandler;
+            if (EncryptionHandler != null) document.EncryptionHandler = EncryptionHandler;
 
             foreach (PropertyInfoEx prop in GetProperties(obj))
             {
@@ -279,6 +310,7 @@ namespace TG.INI.Serialization
                 }
 
             }
+            document.EncryptionHandler = originalHandler;
         }
 
         /// <summary>
