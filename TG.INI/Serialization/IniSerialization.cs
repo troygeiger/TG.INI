@@ -151,7 +151,22 @@ namespace TG.INI.Serialization
                         }
                         else
                         {
-                            prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
+                            Type ntype = Nullable.GetUnderlyingType(prop.PropertyType);
+                            if (ntype != null)
+                            {
+                                if (kv.Value == null)
+                                {
+                                    prop.SetValue(obj, null, null);
+                                }
+                                else
+                                {
+                                    prop.SetValue(obj, Convert.ChangeType(kv.Value, ntype), null);
+                                }
+                            }
+                            else
+                            {
+                                prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
+                            }
                         }
 
                         converted = true;

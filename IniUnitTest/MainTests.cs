@@ -79,6 +79,21 @@ namespace IniUnitTest
         }
 
         [TestMethod]
+        public void TestNullableSerialization()
+        {
+            NullableClass nullable = new NullableClass();
+
+            nullable.NullInt = 3;
+
+            IniDocument document = IniSerialization.SerializeObjectToNewDocument(nullable);
+
+            NullableClass result = IniSerialization.DeserializeDocument<NullableClass>(document);
+
+            Assert.AreEqual(nullable.NullInt, result.NullInt);
+            Assert.AreEqual(nullable.NullBool, result.NullBool);
+        }
+
+        [TestMethod]
         public void TestEncryption()
         {
             EncryptType obj = new EncryptType() { Value = "Hello World" };
@@ -146,6 +161,8 @@ namespace IniUnitTest
             Assert.AreEqual(obj.WindowState, obj2.WindowState);
         }
 
+        
+
     }
 
     public class TestObj
@@ -186,6 +203,13 @@ namespace IniUnitTest
         public Point TestPoint { get; set; }
 
         public int IntValue { get; set; }
+    }
+
+    public class NullableClass
+    {
+        public int? NullInt { get; set; }
+
+        public bool? NullBool { get; set; }
     }
 
     public class WinStateConverter : TypeConverter

@@ -13,8 +13,7 @@
     <description>Reads and writes INI files and make navigating them easy. Can be used with .NET 2.0 or higher.
 Also includes a built in editor. Just call IniDocument.ShowEditor().
 NEW: Simple object can now be serialized/deserialized.</description>
-    <releaseNotes>Breaking changes with encryption. You can now implement your own encryption methods.
-Implemented serialization for anything implementing IConvertible or containing a TypeConverterAttribute.</releaseNotes>
+    <releaseNotes>Bug fix; Deserializing Nullable values failed.</releaseNotes>
     <tags>INI Parse Write Editor Serialize Encrypt</tags>
   </metadata>
   <files>
