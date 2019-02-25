@@ -22,6 +22,28 @@ document.Write(path);
 
 ## Serialize and De-Serialize Objects
 ```
+public class TestObj
+{
+    [IniQuoteValue]
+    public string GlobalEntry { get; set; }
+
+    [Category("Test")]
+    public bool Pass { get; set; }
+
+    [Category("Test")]
+    public float NumberValue { get; set; }
+
+    [Category("Test")]
+    public Color ColorValue { get; set; } = Color.Transparent;
+
+    [Category("Test")]
+    public PointF PointValue { get; set; }
+
+    public RectangleF RectangleValue { get; set; }
+
+    public string IShouldStayNull { get; set; }
+}
+
 TestObj obj = new TestObj()
 {
     GlobalEntry = "Hello World",
