@@ -1,6 +1,7 @@
 # TG.INI
 Reads and writes INI files and make navigating them easy.<br/>
-It provides serialization, encryption of values and a built in editor by calling the ShowEditor method.
+It provides serialization, encryption of values and a built in editor by calling the ShowEditor method.<br/>
+Package is available on [NuGet](https://www.nuget.org/packages/TG.INI/).
 
 ## Example INI
 GlobalEntry="Yes"<br/>
