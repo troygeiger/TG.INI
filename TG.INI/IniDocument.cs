@@ -396,6 +396,7 @@ namespace TG.INI
             }
         }
 
+#if FULLNET
         /// <summary>
         /// Shows the IniEditor window for the current IniDocument.
         /// </summary>
@@ -403,7 +404,7 @@ namespace TG.INI
         {
             return ShowEditor(EditorPrivileges.All);
         }
-        
+
         /// <summary>
         /// Shows the IniEditor window for the current IniDocument.
         /// </summary>
@@ -419,7 +420,7 @@ namespace TG.INI
             }
             return result;
         }
-
+#endif
         /// <summary>
         /// Disposes the document.
         /// </summary>
@@ -434,6 +435,6 @@ namespace TG.INI
             GlobalSection.Clear();
         }
 
-        #endregion Methods
+#endregion Methods
     }
 }
