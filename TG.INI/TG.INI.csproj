@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net45;net40;net35;net20;netstandard1.0;netstandard1.3;netstandard2.0</TargetFrameworks>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
-        <DefineConstants>NET20;FULLNET;</DefineConstants>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
-        <DefineConstants>NET35;FULLNET;</DefineConstants>
-    </PropertyGroup>
-      <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net40;net35;net20;netstandard2.0;netcoreapp2.1;netcoreapp2.2;</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
+    <DefineConstants>NET20;FULLNET;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
+    <DefineConstants>NET35;FULLNET;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <DefineConstants>NET40;FULLNET;</DefineConstants>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
+    <DefineConstants>NET45;FULLNET;</DefineConstants>
+  </PropertyGroup>
 </Project>
