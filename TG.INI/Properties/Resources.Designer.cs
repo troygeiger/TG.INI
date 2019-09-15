@@ -59,15 +59,19 @@ namespace TG.INI.Properties {
                 resourceCulture = value;
             }
         }
-        
+
+#if FULLNET
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lock16 {
-            get {
+        internal static System.Drawing.Bitmap Lock16
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("Lock16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
-        }
+        } 
+#endif
     }
 }
