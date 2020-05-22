@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using TG.INI.Encryption;
-using TG.INI.Helpers;
 
 namespace TG.INI.Serialization
 {

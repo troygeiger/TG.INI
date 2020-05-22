@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TG.INI.Serialization;
 
 namespace TG.INI.Serialization
 {
     [DebuggerStepThrough]
-    public class PropertyInfoEx
+    internal class PropertyInfoEx
     {
         #region Constructors
 
