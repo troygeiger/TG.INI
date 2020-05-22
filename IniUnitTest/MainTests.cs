@@ -72,10 +72,46 @@ namespace IniUnitTest
             TestObj obj2 = IniSerialization.DeserializeDocument<TestObj>(doc);
             Assert.AreEqual(obj.GlobalEntry, obj2.GlobalEntry);
             Assert.AreEqual(obj.Pass, obj2.Pass);
-            Assert.AreEqual(obj.IShouldStayNull, obj2.IShouldStayNull);
             Assert.AreEqual(obj.NumberValue, obj2.NumberValue);
             Assert.AreEqual(obj.PointValue, obj2.PointValue);
             Assert.AreEqual(obj.RectangleValue, obj2.RectangleValue);
+        }
+
+        [TestMethod]
+        public void TestRoundTripWriteRead()
+        {
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Written.ini");
+            TestObj obj = new TestObj()
+            {
+                GlobalEntry = "Hello World",
+                Pass = true,
+                NumberValue = 100,
+                ColorValue = Color.Purple,
+                PointValue = new PointF(20, 50),
+                RectangleValue = new RectangleF(1, 2, 3, 4)
+            };
+            IniDocument doc = IniSerialization.SerializeObjectToNewDocument(obj);
+
+            Assert.IsTrue(doc.Sections.Count == 1 && doc.Sections[0].Name == "Test");
+
+            doc.Write(path);
+
+            IniDocument doc2 = new IniDocument(path);
+
+
+            for (int i = 0; i < doc.GlobalSection.Count; i++)
+            {
+                Assert.AreEqual(doc.GlobalSection[i].Value, doc2.GlobalSection[i].Value);
+            }
+            var test = doc.Sections["Test"];
+            var test2 = doc2.Sections["Test"];
+            for (int i = 0; i < test.Count; i++)
+            {
+                Assert.AreEqual(test[i].Value, test2[i].Value);
+            }
+
+
+
         }
 
         [TestMethod]
@@ -170,16 +206,17 @@ namespace IniUnitTest
         [IniQuoteValue]
         public string GlobalEntry { get; set; }
 
-        [Category("Test")]
+        [IniSection("Test")]
         public bool Pass { get; set; }
 
-        [Category("Test")]
+        [IniSection("Test")]
         public float NumberValue { get; set; }
 
         [Category("Test")]
         public Color ColorValue { get; set; } = Color.Transparent;
 
-        [Category("Test")]
+        [IniSection("Test")]
+        [Category("Do not put me in a section")]
         public PointF PointValue { get; set; }
 
         public RectangleF RectangleValue { get; set; }
