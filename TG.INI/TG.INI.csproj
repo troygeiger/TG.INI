@@ -8,7 +8,7 @@
     <Copyright>Copyright © Troy Geiger 2019</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/troygeiger/TG.INI</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/troygeiger/TG.INI/master/TG.INI/TG.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <RepositoryUrl>https://github.com/troygeiger/TG.INI</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>INI Config Parse Write Editor Serialize Encrypt</PackageTags>
@@ -16,6 +16,7 @@
     <PackageReleaseNotes>Now multi-targets frameworks.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyTitle>TG.INI</AssemblyTitle>
+    <PackageIcon>TG.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
     <DefineConstants>NET20;FULLNET;</DefineConstants>
@@ -39,6 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="TG.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
