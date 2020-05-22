@@ -321,7 +321,7 @@ namespace TG.INI.Serialization
                 }
                 else
                 {
-                    kv.Value = null;
+                    kv.Value = "";
                 }
 
             }
