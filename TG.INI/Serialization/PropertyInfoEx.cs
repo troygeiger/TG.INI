@@ -36,7 +36,7 @@ namespace TG.INI.Serialization
             get { return Info.CanWrite; }
         }
 
-        public string Category { get; private set; }
+        public string Section { get; private set; }
 
         public bool EncryptValue { get; set; }
 
@@ -86,6 +86,8 @@ namespace TG.INI.Serialization
 
         private void ReadAttributes()
         {
+            bool hasSection = false;
+
             foreach (object att in Info.GetCustomAttributes(false))
             {
                 TypeConverterAttribute tconvt = att as TypeConverterAttribute;
@@ -100,11 +102,22 @@ namespace TG.INI.Serialization
                     catch (Exception) { }
                 }
 
-                CategoryAttribute cat = att as CategoryAttribute;
+                IniSectionAttribute sec = att as IniSectionAttribute;
 
-                if (cat != null)
+                if (sec != null)
                 {
-                    Category = cat.Category;
+                    hasSection = true;
+                    Section = sec.SectionName;
+                }
+
+                if (!hasSection)
+                {
+                    CategoryAttribute cat = att as CategoryAttribute;
+
+                    if (cat != null)
+                    {
+                        Section = cat.Category;
+                    } 
                 }
 
                 if (IniProperty == null)

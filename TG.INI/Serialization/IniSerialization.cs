@@ -111,13 +111,13 @@ namespace TG.INI.Serialization
                     continue;
                 }
 
-                if (prop.Category == null)
+                if (prop.Section == null)
                 {
                     section = document.GlobalSection;
                 }
-                else if (section.Name != prop.Category)
+                else if (section.Name != prop.Section)
                 {
-                    section = document.Sections[prop.Category];
+                    section = document.Sections[prop.Section];
                 }
 
                 if (!section.ContainsKey(prop.Name)) continue;
@@ -295,13 +295,13 @@ namespace TG.INI.Serialization
                 }
 
                 IniSection section;
-                if (prop.Category == null)
+                if (prop.Section == null)
                 {
                     section = document.GlobalSection;
                 }
                 else
                 {
-                    section = document.Sections[prop.Category];
+                    section = document.Sections[prop.Section];
                 }
 
                 IniKeyValue kv = section[prop.Name];
