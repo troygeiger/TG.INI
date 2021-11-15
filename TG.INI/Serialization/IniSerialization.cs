@@ -42,6 +42,11 @@ namespace TG.INI.Serialization
         /// </summary>
         public INI.Encryption.IEncryptionHandler EncryptionHandler { get; set; }
 
+        /// <summary>
+        /// If true, properties with null or blank strings will still be serialized. Default true.
+        /// </summary>
+        public bool SerializeNullAndBlank { get; set; } = true;
+
         private static IniSerialization Instance
         {
             get
@@ -302,12 +307,19 @@ namespace TG.INI.Serialization
                 {
                     section = document.Sections[prop.Section];
                 }
+                object value = prop.GetValue(obj, null);
 
+                if ((value is null || (value is string strValue && string.IsNullOrEmpty(strValue) == true )) 
+                    && SerializeNullAndBlank == false)
+                {
+                    continue;
+                }
+                
                 IniKeyValue kv = section[prop.Name];
                 kv.EncryptValue = prop.EncryptValue;
                 kv.QuoteValue = prop.QuoteValue;
 
-                object value = prop.GetValue(obj, null);
+                
                 if (value != null)
                 {
                     if (prop.TypeConverter?.CanConvertTo(typeof(string)) == true)
@@ -318,11 +330,9 @@ namespace TG.INI.Serialization
                     {
                         kv.Value = value.ToString();
                     }
+                    continue;
                 }
-                else
-                {
-                    kv.Value = "";
-                }
+                kv.Value = "";
 
             }
             document.EncryptionHandler = originalHandler;
