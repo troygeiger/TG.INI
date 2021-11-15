@@ -197,7 +197,21 @@ namespace IniUnitTest
             Assert.AreEqual(obj.WindowState, obj2.WindowState);
         }
 
-        
+        [TestMethod]
+        public void TestSerializeNullBlankFalse()
+        {
+            TestObj obj = new TestObj()
+            {
+                GlobalEntry = "" //Test Blank
+            };
+            var serializer = new IniSerialization() { SerializeNullAndBlank = false };
+            
+            var ini = serializer.SerializeObject(obj);
+
+            Assert.IsFalse(ini.GlobalSection.ContainsKey(nameof(TestObj.GlobalEntry)));
+            Assert.IsFalse(ini.GlobalSection.ContainsKey(nameof(TestObj.IShouldStayNull)));
+            Assert.IsTrue(ini.Sections["Test"].ContainsKey(nameof(TestObj.Pass)));
+        }
 
     }
 
