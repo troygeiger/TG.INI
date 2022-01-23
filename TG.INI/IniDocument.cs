@@ -245,7 +245,7 @@ namespace TG.INI
             IniSection gSection = GlobalSection;
             gSection.Clear();
             Sections.Clear();
-            var kvRex = new Regex("((.+?)=\"(.*)\")|((.+?)=(.*))");
+            var kvRex = new Regex(@"(\s*(.+?)\s*=\s*""(.*)"")|(\s*(.+?)\s*=\s*(.*))");
             var secRex = new Regex("\\[([a-zA-Z0-9_\\s]+)\\]");
 
             try
