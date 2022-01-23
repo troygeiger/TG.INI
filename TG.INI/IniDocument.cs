@@ -7,7 +7,7 @@ using TG.INI.Encryption;
 
 namespace TG.INI
 {
-    
+
     /// <summary>
     /// Represents an INI file structure.
     /// </summary>
@@ -16,7 +16,7 @@ namespace TG.INI
         #region Fields
 
         SectionCollection _sections;
-        
+
         Serialization.ISerializer serializer = null;
 
         #endregion Fields
@@ -90,7 +90,7 @@ namespace TG.INI
         {
             Serialization.IniSerialization.SerializeObjectIntoDocument(obj, this);
         }
-        
+
         #endregion Constructors
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace TG.INI
         /// Get or set the <see cref="IEncryptionHandler"/> to use for encryption.
         /// </summary>
         public IEncryptionHandler EncryptionHandler { get; set; }
-        
+
         /// <summary>
         /// Gets if the <see cref="EncryptionHandler"/> property is not null.
         /// </summary>
@@ -147,7 +147,7 @@ namespace TG.INI
                 return EncryptionHandler != null;
             }
         }
-        
+
         /// <summary>
         /// Gets or Sets whether all <see cref="IniKeyValue.Value"/> properties should be quoted on output.
         /// </summary>
@@ -206,8 +206,8 @@ namespace TG.INI
             var id = new IniDocument(this.EncryptionHandler);
             using (StringReader reader = new StringReader(idata))
                 id.Read(reader);
-            
-            
+
+
             id.QuoteAllValues = this.QuoteAllValues;
             return id;
         }
@@ -247,48 +247,46 @@ namespace TG.INI
             Sections.Clear();
             var kvRex = new Regex(@"(\s*(.+?)\s*=\s*""(.*)"")|(\s*(.+?)\s*=\s*(.*))");
             var secRex = new Regex("\\[([a-zA-Z0-9_\\s]+)\\]");
+            bool quoted;
 
-            try
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
-                string line = reader.ReadLine();
-                while (line != null)
+                if (string.IsNullOrEmpty(line))
                 {
-                    if (string.IsNullOrEmpty(line))
-                        gSection.Add(new IniWhiteSpace(line));
-                    else if (line.StartsWith(this.CommentLineIndicator))
-                        gSection.AddComment(line.Remove(0, this.CommentLineIndicator.Length));
-                    else
-                    {
-                        var m = kvRex.Match(line);
-
-                        if (m.Success)
-                        {
-                            if (m.Groups[2].Length > 0)
-                            {
-                                //gSection.Add(new IniKeyValue(m.Groups[2].Value, m.Groups[3].Value) { QuoteValue = true });
-                                gSection.InternalAddKeyValue(m.Groups[2].Value, m.Groups[3].Value, true);
-                            }
-                            else if (m.Groups[5].Length > 0)
-                            {
-                                //gSection.Add(new IniKeyValue(m.Groups[5].Value, m.Groups[6].Value));
-                                gSection.InternalAddKeyValue(m.Groups[5].Value, m.Groups[6].Value, false);
-                            }
-                        }
-                        else
-                        {
-                            m = secRex.Match(line);
-                            if (m.Success)
-                                gSection = this.Sections.Add(m.Groups[1].Value);
-
-                        }
-                    }
-                    line = reader.ReadLine();
+                    gSection.Add(new IniWhiteSpace(line));
+                    continue;
                 }
-            }
-            catch (Exception)
-            {
 
+                if (line.StartsWith(this.CommentLineIndicator))
+                {
+                    gSection.AddComment(line.Remove(0, this.CommentLineIndicator.Length));
+                    continue;
+                }
+
+                // Check for Key/Value
+                var m = kvRex.Match(line);
+
+                if (m.Success)
+                {
+                    quoted = string.IsNullOrEmpty(m.Groups[2].Value) == false;
+                    Group keyGroup = quoted ? m.Groups[2] : m.Groups[5];
+                    Group valueGroup = quoted ? m.Groups[3] : m.Groups[6];
+                    
+                    gSection.AddKeyValue(keyGroup.Value, valueGroup.Value, false, quoted);
+                    continue;
+                }
+
+                m = secRex.Match(line);
+                if (m.Success == false)
+                {
+                    continue;
+                    
+                }
+
+                gSection = this.Sections.Add(m.Groups[1].Value);
             }
+
         }
 
         /// <summary>
@@ -435,6 +433,6 @@ namespace TG.INI
             GlobalSection.Clear();
         }
 
-#endregion Methods
+        #endregion Methods
     }
 }

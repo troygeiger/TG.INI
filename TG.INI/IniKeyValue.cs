@@ -17,7 +17,6 @@ namespace TG.INI
 
         const string cryptoPrefix = "crypto:";
         string _key = null;
-        bool _encryptValue = false;
         static Regex rexSysDraw = new Regex(@"(?<rect>\{X=(?<rx>[\d\.]{1,}),\s*Y=(?<ry>[\d\.]{1,}),\s*Width=(?<rw>[\d\.]{1,}),\s*Height=(?<rh>[\d\.]{1,})})|(?<size>{Width=(?<sw>[\d\.]{1,}),\s*Height=(?<sh>[\d\.]{1,})})|(?<point>{X=(?<px>[\d\.]{1,}),\s*Y=(?<py>[\d\.]{1,})})");
         static Regex rexColor = new Regex(@"^#(?<hex>(?<r>[0-9a-fA-F]{2,2})(?<g>[0-9a-fA-F]{2,2})(?<b>[0-9a-fA-F]{2,2})(?<a>[0-9a-fA-F]{2,2})?)|(?<name>\w{1,})$");
 
@@ -38,10 +37,8 @@ namespace TG.INI
         /// <param name="key">The key name.</param>
         /// <param name="value">The string value.</param>
         public IniKeyValue(string key, string value)
-        {
-            this.Key = key;
-            this.Value = value;
-        }
+            : this(key, value, false, false)
+        { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="IniKeyValue"/> with a key and int value.
@@ -49,10 +46,8 @@ namespace TG.INI
         /// <param name="key"></param>
         /// <param name="value"></param>
         public IniKeyValue(string key, int value)
-        {
-            this.Key = key;
-            this.ValueInt = value;
-        }
+            : this(key, value.ToString(), false, false)
+        { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="IniKeyValue"/> with a key, value and if the value should be encrypted.
@@ -60,10 +55,9 @@ namespace TG.INI
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="encryptValue"></param>
-        public IniKeyValue(string key, string value, bool encryptValue) : this(key, value)
-        {
-            this.EncryptValue = encryptValue;
-        }
+        public IniKeyValue(string key, string value, bool encryptValue)
+            : this(key, value, encryptValue, false)
+        { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="IniKeyValue"/> with a key, value and if the value should be encrypted and quoted.
@@ -72,9 +66,24 @@ namespace TG.INI
         /// <param name="value"></param>
         /// <param name="encryptValue"></param>
         /// <param name="quoteValue"></param>
-        public IniKeyValue(string key, string value, bool encryptValue, bool quoteValue) : this(key, value, encryptValue)
+        public IniKeyValue(string key, string value, bool encryptValue, bool quoteValue)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="IniKeyValue"/> with a key, value and if the value should be encrypted and quoted.
+        /// </summary>
+        /// <param name="parentDocumnt"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="encryptValue"></param>
+        /// <param name="quoteValue"></param>
+        public IniKeyValue(IniDocument parentDocumnt, string key, string value, bool encryptValue, bool quoteValue)
         {
+            ParentDocument = parentDocumnt;
             this.QuoteValue = quoteValue;
+            this.EncryptValue = encryptValue;
+            this.Key = key;
+            this.Value = value;
         }
 
         #endregion Constructors
@@ -499,7 +508,7 @@ namespace TG.INI
 
             }
         }
-        
+
         /// <summary>
         /// Gets or Sets if the value should be encrypted.
         /// </summary>
@@ -508,10 +517,10 @@ namespace TG.INI
         #endregion Properties
 
         #region Methods
-        
+
         private string EncryptString(string value)
         {
-            return cryptoPrefix + 
+            return cryptoPrefix +
                 ParentDocument?.EncryptionHandler?.EncryptBase64(value) ?? value;
         }
 
@@ -527,7 +536,7 @@ namespace TG.INI
                 return ParentDocument?.EncryptionHandler?.DecryptBase64(value);
             }
         }
-        
+
         #endregion Methods
 
         /// <summary>

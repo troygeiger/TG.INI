@@ -213,6 +213,47 @@ namespace IniUnitTest
             Assert.IsTrue(ini.Sections["Test"].ContainsKey(nameof(TestObj.Pass)));
         }
 
+        [TestMethod]
+        public void TestDuplicateKeys()
+        {
+
+            try
+            {
+                var ini = IniDocument.Parse(@"GlobalEntry=""Yes""
+[Test]
+Pass = True
+Pass = False
+NumberValue = 1
+ColorValue = ""Red""
+PointValue = ""{X=1.1,Y=2.2}""");
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestDuplicateSections()
+        {
+            try
+            {
+                var ini = IniDocument.Parse(@"GlobalEntry=""Yes""
+[Test]
+Pass = True
+[Test]
+Pass = False
+NumberValue = 1
+ColorValue = ""Red""
+PointValue = ""{X=1.1,Y=2.2}""");
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 
     public class TestObj

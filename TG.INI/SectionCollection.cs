@@ -64,6 +64,8 @@
         /// <returns>The value of param section.</returns>
         public IniSection Add(IniSection section)
         {
+            if (Contains(section.Name))
+                throw new Exception($"Secion '{section.Name}' already exists!");
             List.Add(section);
             section.ParentDocument = this.ParentDocument;
             return section;
@@ -76,6 +78,8 @@
         /// <returns>The instance of the new <see cref="IniSection"/>.</returns>
         public IniSection Add(string name)
         {
+            if (Contains(name))
+                throw new Exception($"Secion '{name}' already exists!");
             var section = new IniSection(name) { ParentDocument = this.ParentDocument };
             List.Add(section);
             return section;

@@ -104,7 +104,7 @@
             keyValue.ParentDocument = this.ParentDocument;
             List.Add(keyValue);
         }
-                
+
         /// <summary>
         /// Adds a new key/value entry to the section.
         /// </summary>
@@ -129,24 +129,8 @@
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException("key");
             if (ContainsKey(key))
-                throw new Exception("Key already exists in section.");
-            var kv = new IniKeyValue(key, value, encryptValue, quoteValue);
-            kv.ParentDocument = this.ParentDocument;
-            List.Add(kv);
-            return kv;
-        }
-
-        internal IniKeyValue InternalAddKeyValue(string key, string value, bool quoteValue)
-        {
-            if (string.IsNullOrEmpty(key))
-                throw new ArgumentNullException("key");
-            if (ContainsKey(key))
-                throw new Exception("Key already exists in section.");
-            var kv = new IniKeyValue();
-            kv.ParentDocument = this.ParentDocument;
-            kv.Key = key;
-            kv.Value = value;
-            kv.QuoteValue = quoteValue;
+                throw new Exception($"Key '{key}' already exists in section [{Name}].");
+            var kv = new IniKeyValue(ParentDocument, key, value, encryptValue, quoteValue);
             List.Add(kv);
             return kv;
         }

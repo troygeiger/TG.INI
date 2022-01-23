@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net45;net40;net35;net20;netstandard2.0;netcoreapp2.1;netcoreapp2.2;</TargetFrameworks>
-    <Version>1.3.2</Version>
+    <Version>1.3.3</Version>
     <Authors>Troy Geiger</Authors>
     <Description>Reads and writes INI files and make navigating them easy. Simple object can now be serialized/deserialized.</Description>
     <Copyright>Copyright © Troy Geiger 2019</Copyright>
@@ -13,7 +13,6 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>INI Config Parse Write Editor Serialize Encrypt</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Now multi-targets frameworks.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyTitle>TG.INI</AssemblyTitle>
     <PackageIcon>TG.png</PackageIcon>
