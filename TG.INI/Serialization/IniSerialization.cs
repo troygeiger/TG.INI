@@ -69,7 +69,7 @@ namespace TG.INI.Serialization
         /// <returns>A new instance of T type.</returns>
         public virtual T Deserialize<T>(IniDocument document)
         {
-            
+
             ConstructorInfo constructor = GetConstructor(typeof(T));
 
             if (constructor == null)
@@ -78,9 +78,9 @@ namespace TG.INI.Serialization
             }
 
             object obj = constructor.Invoke(null);
-            
+
             DeserializeInto(document, obj);
-            
+
             return (T)obj;
         }
 
@@ -130,118 +130,87 @@ namespace TG.INI.Serialization
 
                 IniKeyValue kv = section[prop.Name];
 
-                //string l = prop.PropertyType.FullName.ToLower();
-                bool converted = false;
-                if (prop.TypeConverter != null)
+                if (prop.TypeConverter != null && prop.TypeConverter.CanConvertFrom(typeof(string)))
                 {
-                    try
-                    {
-                        if (prop.TypeConverter.CanConvertFrom(typeof(string)))
-                        {
-                            prop.SetValue(obj, prop.TypeConverter.ConvertFrom(kv.Value), null);
-                            converted = true;
-                        }
-
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        if (prop.PropertyType.IsEnum)
-                        {
-                            prop.SetValue(obj, Enum.Parse(prop.PropertyType, kv.Value), null);
-                        }
-                        else
-                        {
-                            Type ntype = Nullable.GetUnderlyingType(prop.PropertyType);
-                            if (ntype != null)
-                            {
-                                if (kv.Value == null)
-                                {
-                                    prop.SetValue(obj, null, null);
-                                }
-                                else
-                                {
-                                    prop.SetValue(obj, Convert.ChangeType(kv.Value, ntype), null);
-                                }
-                            }
-                            else
-                            {
-                                prop.SetValue(obj, Convert.ChangeType(kv.Value, prop.PropertyType), null);
-                            }
-                        }
-
-                        converted = true;
-                    }
-                    catch (Exception)
-                    {
-
-                    }
+                    prop.SetValue(obj, prop.TypeConverter.ConvertFrom(kv.Value), null);
+                    continue;
                 }
 
-                if (!converted)
+
+                if (prop.PropertyType.IsEnum)
                 {
-                    switch (prop.PropertyType.FullName.ToLower())
-                    {
-                        case "system.string":
-                            prop.SetValue(obj, kv.Value, null);
-                            break;
-                        case "system.boolean":
-                            prop.SetValue(obj, kv.ValueBoolean, null);
-                            break;
-                        case "system.byte":
-                            prop.SetValue(obj, kv.ValueByte, null);
-                            break;
-                        case "system.int16":
-                            prop.SetValue(obj, kv.ValueInt16, null);
-                            break;
-                        case "system.int32":
-                            prop.SetValue(obj, kv.ValueInt, null);
-                            break;
-                        case "system.int64":
-                            prop.SetValue(obj, kv.ValueInt64, null);
-                            break;
-                        case "system.single":
-                            prop.SetValue(obj, kv.ValueFloat, null);
-                            break;
-                        case "system.double":
-                            prop.SetValue(obj, kv.ValueDouble, null);
-                            break;
-                        case "system.decimal":
-                            prop.SetValue(obj, kv.ValueDecimal, null);
-                            break;
-                        case "system.datetime":
-                            prop.SetValue(obj, kv.ValueDateTime, null);
-                            break;
-                        case "system.drawing.color":
-                            prop.SetValue(obj, kv.ValueColor, null);
-                            break;
-                        case "system.drawing.point":
-                            prop.SetValue(obj, kv.ValuePoint, null);
-                            break;
-                        case "system.drawing.pointf":
-                            prop.SetValue(obj, kv.ValuePointF, null);
-                            break;
-                        case "system.drawing.size":
-                            prop.SetValue(obj, kv.ValueSize, null);
-                            break;
-                        case "system.drawing.sizef":
-                            prop.SetValue(obj, kv.ValueSizeF, null);
-                            break;
-                        case "system.drawing.rectagle":
-                            prop.SetValue(obj, kv.ValueRectangle, null);
-                            break;
-                        case "system.drawing.rectanglef":
-                            prop.SetValue(obj, kv.ValueRectangleF, null);
-                            break;
-                        default:
-                            break;
-                    }
+                    prop.SetValue(obj, Enum.Parse(prop.PropertyType, kv.Value), null);
+                    continue;
+                }
+
+
+                Type ptype = Nullable.GetUnderlyingType(prop.PropertyType);
+                bool nullable = ptype != null;
+                bool valueNull = string.IsNullOrEmpty(kv.Value);
+                if (nullable && valueNull)
+                {
+                    prop.SetValue(obj, null, null);
+                    continue;
+                }
+                ptype = ptype ?? prop.PropertyType;
+
+                switch (ptype.FullName.ToLower())
+                {
+                    case "system.string":
+                        prop.SetValue(obj, valueNull ? null : kv.Value, null);
+                        break;
+                    case "system.boolean":
+                        prop.SetValue(obj, kv.ValueBoolean, null);
+                        break;
+                    case "system.byte":
+                        prop.SetValue(obj, kv.ValueByte, null);
+                        break;
+                    case "system.int16":
+                        prop.SetValue(obj, kv.ValueInt16, null);
+                        break;
+                    case "system.int32":
+                        prop.SetValue(obj, kv.ValueInt, null);
+                        break;
+                    case "system.int64":
+                        prop.SetValue(obj, kv.ValueInt64, null);
+                        break;
+                    case "system.single":
+                        prop.SetValue(obj, kv.ValueFloat, null);
+                        break;
+                    case "system.double":
+                        prop.SetValue(obj, kv.ValueDouble, null);
+                        break;
+                    case "system.decimal":
+                        prop.SetValue(obj, kv.ValueDecimal, null);
+                        break;
+                    case "system.datetime":
+                        prop.SetValue(obj, kv.ValueDateTime, null);
+                        break;
+                    case "system.drawing.color":
+                        prop.SetValue(obj, kv.ValueColor, null);
+                        break;
+                    case "system.drawing.point":
+                        prop.SetValue(obj, kv.ValuePoint, null);
+                        break;
+                    case "system.drawing.pointf":
+                        prop.SetValue(obj, kv.ValuePointF, null);
+                        break;
+                    case "system.drawing.size":
+                        prop.SetValue(obj, kv.ValueSize, null);
+                        break;
+                    case "system.drawing.sizef":
+                        prop.SetValue(obj, kv.ValueSizeF, null);
+                        break;
+                    case "system.drawing.rectagle":
+                        prop.SetValue(obj, kv.ValueRectangle, null);
+                        break;
+                    case "system.drawing.rectanglef":
+                        prop.SetValue(obj, kv.ValueRectangleF, null);
+                        break;
+                    default:
+                        prop.SetValue(obj, Convert.ChangeType(kv.Value, ptype), null);
+                        break;
+
                 }
             }
             document.EncryptionHandler = originalHandler;
@@ -292,6 +261,7 @@ namespace TG.INI.Serialization
             }
             Encryption.IEncryptionHandler originalHandler = document.EncryptionHandler;
             if (EncryptionHandler != null) document.EncryptionHandler = EncryptionHandler;
+            IniSection section;
 
             foreach (PropertyInfoEx prop in GetProperties(obj))
             {
@@ -300,41 +270,35 @@ namespace TG.INI.Serialization
                     continue;
                 }
 
-                IniSection section;
-                if (prop.Section == null)
-                {
-                    section = document.GlobalSection;
-                }
-                else
-                {
-                    section = document.Sections[prop.Section];
-                }
+                section = string.IsNullOrEmpty(prop.Section) 
+                    ? document.GlobalSection : document.Sections[prop.Section];
+                
                 object value = prop.GetValue(obj, null);
 
-                if ((value is null || (value is string strValue && string.IsNullOrEmpty(strValue) == true )) 
+                if ((value is null || (value is string strValue && string.IsNullOrEmpty(strValue) == true))
                     && SerializeNullAndBlank == false)
                 {
                     continue;
                 }
-                
+
                 IniKeyValue kv = section[prop.Name];
                 kv.EncryptValue = prop.EncryptValue;
                 kv.QuoteValue = prop.QuoteValue;
 
-                
-                if (value != null)
+
+                if (value == null)
                 {
-                    if (prop.TypeConverter?.CanConvertTo(typeof(string)) == true)
-                    {
-                        kv.Value = prop.TypeConverter.ConvertTo(value, typeof(string)) as string;
-                    }
-                    else
-                    {
-                        kv.Value = value.ToString();
-                    }
+                    kv.Value = "";
                     continue;
                 }
-                kv.Value = "";
+
+                if (prop.TypeConverter?.CanConvertTo(typeof(string)) == true)
+                {
+                    kv.Value = prop.TypeConverter.ConvertTo(value, typeof(string)) as string;
+                    continue;
+                }
+
+                kv.Value = value.ToString();
 
             }
             document.EncryptionHandler = originalHandler;

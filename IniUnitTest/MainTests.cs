@@ -186,15 +186,12 @@ namespace IniUnitTest
         {
             ConvertObj obj = new ConvertObj()
             {
-                TestPoint = new Point(1, 1),
-                WindowState = FormWindowState.Maximized,
-                IntValue = 20
+                Owner = new Person() { FirstName = "John", LastName = "Doe"}
             };
             var ini = IniSerialization.SerializeObjectToNewDocument(obj);
             ConvertObj obj2 = IniSerialization.DeserializeDocument<ConvertObj>(ini);
-            Assert.AreEqual(obj.IntValue, obj2.IntValue);
-            Assert.AreEqual(obj.TestPoint, obj2.TestPoint);
-            Assert.AreEqual(obj.WindowState, obj2.WindowState);
+            Assert.AreEqual(obj.Owner.FirstName, obj2.Owner.FirstName);
+            Assert.AreEqual(obj.Owner.LastName, obj2.Owner.LastName);
         }
 
         [TestMethod]
@@ -289,12 +286,7 @@ PointValue = ""{X=1.1,Y=2.2}""");
 
     public class ConvertObj
     {
-        //[TypeConverter(typeof(WinStateConverter))]
-        public FormWindowState WindowState { get; set; }
-
-        public Point TestPoint { get; set; }
-
-        public int IntValue { get; set; }
+        public Person Owner { get; set; }
     }
 
     public class NullableClass
@@ -304,19 +296,39 @@ PointValue = ""{X=1.1,Y=2.2}""");
         public bool? NullBool { get; set; }
     }
 
-    public class WinStateConverter : TypeConverter
+    [TypeConverter(typeof(PersonConverter))]
+    public class Person
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+    }
+
+    public class PersonConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
             return sourceType == typeof(string);
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            FormWindowState state;
-            Enum.TryParse<FormWindowState>(value as string, out state);
-            return state;
+            return base.CanConvertTo(context, destinationType);
         }
 
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            string str = value as string;
+            if (str == null) return null;
+            string[] values = str.Split('~');
+            if (values.Length == 0) return null;
+            return new Person() { FirstName = values[0], LastName = values[1]};
+        }
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var person = (Person)value;
+            return $"{person.FirstName}~{person.LastName}";
+        }
     }
 }
