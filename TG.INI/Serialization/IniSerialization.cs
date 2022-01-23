@@ -115,6 +115,8 @@ namespace TG.INI.Serialization
                     continue;
                 }
 
+                if (prop.CanWrite == false) continue;
+
                 if (prop.Section == null)
                 {
                     section = document.GlobalSection;
